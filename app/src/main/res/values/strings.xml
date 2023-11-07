@@ -1,3 +1,211 @@
 <resources>
     <string name="app_name">PMDM_P4_MyCity_Madrid</string>
+
+    <!-- Recursos de categorías -->
+    <string name="hosteleria">Hosteleria</string>
+    <string name="ocio">Ocio</string>
+    <string name="cultura">Cultura</string>
+    <string name="alojamiento">Alojamiento</string>
+
+    <string name="cafeterias">Cafeterías</string>
+    <string name="restaurantes">Restaurantes</string>
+
+    <string name="centros_comerciales">Centros comerciales</string>
+    <string name="cines">Cines</string>
+    <string name="parques">Parques</string>
+
+    <string name="monumentos">Monumentos</string>
+    <string name="museos">Museos</string>
+
+    <string name="hoteles">Hoteles</string>
+    <string name="apartamentos">Apartamentos</string>
+
+    <!-- Recursos de cafeterías -->
+    <string name="nom_cafe1">The Little Big Cafe</string>
+    <string name="dir_cafe1">C. de Fernández de los Ríos, 61, 28015 Madrid</string>
+    <string name="desc_cafe1">Cafés, tartas, brunches y platos ligeros en una cafetería acogedora y moderna con mesas de madera.</string>
+
+    <string name="nom_cafe2">Toma Café 1</string>
+    <string name="dir_cafe2">C. de la Palma, 49, 28004 Madrid</string>
+    <string name="desc_cafe2">Surtido de cafés y repostería en un local con blanco ladrillo visto, muebles vintage y una bici en el techo.</string>
+
+    <string name="nom_cafe3">Saint Georges Cafe</string>
+    <string name="dir_cafe3">C. del Cardenal Cisneros, 62, 28010 Madrid</string>
+    <string name="desc_cafe3">Epicentro de muchos cafés de especialidad, tiene un poco de todo  y todo es de gran calidad.</string>
+
+    <string name="nom_cafe4">Santa Kafeina</string>
+    <string name="dir_cafe4">C. de Viriato, 37, 28010 Madrid</string>
+    <string name="desc_cafe4">Galletas, platos ligeros y cafés de especialidad en un local sencillo con detalles en madera que vende café en grano.</string>
+
+    <string name="nom_cafe5">Cafelito</string>
+    <string name="dir_cafe5">C. del Sombrerete, 20, 28012 Madrid</string>
+    <string name="desc_cafe5">Disponemos de cafés artesanos, cócteles, vinos, combinados con destilados artesanales, plato del día, postres, cervezas y refrescos.</string>
+
+    <!-- Recursos de restaurantes -->
+    <string name="nom_restaurante1">Restaurante Arrabal</string>
+    <string name="dir_restaurante1">Pl. Mayor, 23, 28012 Madrid</string>
+    <string name="desc_restaurante1">Comida tradicional en un restaurante histórico y refinado con toques modernos y antiguos.</string>
+
+    <string name="nom_restaurante2">La Esquina del Real</string>
+    <string name="dir_restaurante2">C. de la Amnistía, 4, 28013 Madrid</string>
+    <string name="desc_restaurante2">Platos clásicos de la cocina francesa, como fuagrás, pato y mollejas, en un restaurante con paredes de ladrillo e iluminación tenue.</string>
+
+    <string name="nom_restaurante3">Restaurante Gloria Bendita Madrid</string>
+    <string name="dir_restaurante3">C. de Santiago, 3, 28013 Madrid</string>
+    <string name="desc_restaurante3">Restaurante acogedor, de ambiente desenfadado y original, que ofrece una carta con platos tradicionales y creativos.</string>
+
+    <string name="nom_restaurante4">Restaurante El Tormo</string>
+    <string name="dir_restaurante4">Tr.ª de las Vistillas, 13, 28005 Madrid</string>
+    <string name="desc_restaurante4">Menú cambiante de platos castellanos contundentes y vinos regionales en un restaurante emblemático regentado por una familia.</string>
+
+    <string name="nom_restaurante5">Pampa Beef</string>
+    <string name="dir_restaurante5">C. del Príncipe, 3, 28012 Madrid</string>
+    <string name="desc_restaurante5">Restaurante sencillo especializado en las parrilladas de carne tradicionales de Argentina.</string>
+
+    <!-- Recursos de centros comerciales -->
+    <string name="nom_comercial1">Centro Comercial Príncipe Pío</string>
+    <string name="dir_comercial1">P.º de la Florida, 2, 28008 Madrid</string>
+    <string name="desc_comercial1">Centro comercial elegante con techo acristalado, una amplia variedad de tiendas, restaurantes y cine.</string>
+
+    <string name="nom_comercial2">El Corte Inglés Preciados</string>
+    <string name="dir_comercial2">C. de Preciados, 3, 10, 28013 Madrid</string>
+    <string name="desc_comercial2">Centro comercial con las últimas novedades en moda, electrónica, informática, deportes y mucho más de las mejores marcas al mejor precio.</string>
+
+    <string name="nom_comercial3">Centro Comercial La Vaguada</string>
+    <string name="dir_comercial3">Av. de Monforte de Lemos, 36, 28029 Madrid</string>
+    <string name="desc_comercial3">Más de 230 tiendas y restaurantes para disfrutar de las mejores compras y de tu ocio.</string>
+
+    <string name="nom_comercial4">Centro Comercial Islazul</string>
+    <string name="dir_comercial4">C. de la Calderilla, 1, 28054 Madrid</string>
+    <string name="desc_comercial4">Complejo vanguardista con plaza central y plantas tropicales que reúne cine, tiendas, bares y restaurantes.</string>
+
+    <string name="nom_comercial5">Centro Comercial Plenilunio</string>
+    <string name="dir_comercial5">C. de Aracne, s/n, 28022 Madrid</string>
+    <string name="desc_comercial5">Vasto complejo vanguardista con plaza central con supermercados, cines, tiendas de moda y tecnología y bares.</string>
+
+    <!-- Recursos de cines -->
+    <string name="nom_cine1">Cines Callao</string>
+    <string name="dir_cine1">Pl. del Callao, 3, 28013 Madrid</string>
+    <string name="desc_cine1">Son escenario de las mejores premieres cinematográficas y por su alfombra roja desfilan grandes estrellas del cine.</string>
+
+    <string name="nom_cine2">Cine Yelmo Luxury Palafox</string>
+    <string name="dir_cine2">C. de Luchana, 15, 28010 Madrid</string>
+    <string name="desc_cine2">Cine de lujo con asientos reclinables y servicio de restauración.</string>
+
+    <string name="nom_cine3">Capitol Gran Vía</string>
+    <string name="dir_cine3">C.Gran Vía, 41, 28013 Madrid</string>
+    <string name="desc_cine3">Dispone de tres salas donde podrás visualizar los últimos estrenos, con espacios interiores reservados para otras reuniones.</string>
+
+    <string name="nom_cine4">Cine Estudio del Circulo de Bellas Artes</string>
+    <string name="dir_cine4">C. del Marqués de Casa Riera, 4, 28014 Madrid</string>
+    <string name="desc_cine4">Una de las últimas salas con arquitectura tradicional de cine, un espacio único en Madrid para los amantes del séptimo arte.</string>
+
+    <string name="nom_cine5">Golem Madrid</string>
+    <string name="dir_cine5">C. de Martín de los Heros, 14, 28008 Madrid</string>
+    <string name="desc_cine5">Moderna multisala conocida entre los cinéfilos por su oferta de películas independientes en versión original.</string>
+
+    <!-- Recursos de parques -->
+    <string name="nom_parque1">Parque del Oeste</string>
+    <string name="dir_parque1">P.º de Moret, 2, 28008 Madrid</string>
+    <string name="desc_parque1">Gran parque urbano paisajístico del siglo XX, con rutas que serpentean alrededor de coníferas y cedros.</string>
+
+    <string name="nom_parque2">Parque Madrid Río</string>
+    <string name="dir_parque2">P.º de la Ermita del Santo, 14, 16, 28011 Madrid</string>
+    <string name="desc_parque2">Moderno espacio verde paralelo al río Manzanares, con eventos culturales y pistas deportivas.</string>
+
+    <string name="nom_parque3">Parque de El Retiro</string>
+    <string name="dir_parque3">28009 Madrid</string>
+    <string name="desc_parque3">Amplio parque del siglo XIX con lago para barcas y rosaleda, además de diversas fuentes y estatuas.</string>
+
+    <string name="nom_parque4">Parque de la Quinta de los Molinos</string>
+    <string name="dir_parque4">C. de Alcalá, 527, 28027 Madrid</string>
+    <string name="desc_parque4">Antigua finca reconvertida en un parque conocido por sus almendros floridos en primavera.</string>
+
+    <string name="nom_parque5">Parque de la Quinta de la Fuente del Berro</string>
+    <string name="dir_parque5">C. del Alcalde Sainz de Baranda, 94, 28028 Madrid</string>
+    <string name="desc_parque5">Un parque amplio, con más de dos lagos y una cascada, variedad en zonas infantiles, bastante zona verde, mucha tranquilidad, ideal para meditar, correr o montar en bici.</string>
+
+    <!-- Recursos de monumentos -->
+    <string name="nom_monumento1">Monumento a Don Álvaro de Bazán</string>
+    <string name="dir_monumento1">Pl. de la Villa, S/N, 28008 Madrid</string>
+    <string name="desc_monumento1">Estatua del almirante Don Álvaro de Bazán que se encuentra rodeada por un precioso jardín.</string>
+
+    <string name="nom_monumento2">Fuente de Cibeles</string>
+    <string name="dir_monumento2">Plaza Cibeles, S/N, 28014 Madrid</string>
+    <string name="desc_monumento2">Fuente neoclásica del siglo XVIII en la que se representa a la diosa Cibeles en un carro tirado por 2 leones.</string>
+
+    <string name="nom_monumento3">Monumento a Goya</string>
+    <string name="dir_monumento3">C. de Felipe IV, s/n, 28014 Madrid</string>
+    <string name="desc_monumento3">Te da al bienvenida al museo Nacional de El Prado donde se encuentra una gran colección de sus obras.</string>
+
+    <string name="nom_monumento4">Puerta de Alcalá</string>
+    <string name="dir_monumento4">Pl. de la Independencia, s/n, 28001 Madrid</string>
+    <string name="desc_monumento4">Arco de triunfo cerca del Parque del Buen Retiro, con ornamentación tallada en piedra y refinadas esculturas.</string>
+
+    <string name="nom_monumento5">Puerta de Toledo</string>
+    <string name="dir_monumento5">Gta. de la Prta de Toledo, s/n, 28005 Madrid</string>
+    <string name="desc_monumento5">Puerta de estilo neoclásico con arcos de piedra y estatuas en honor de Fernando VII.</string>
+
+    <!-- Recursos de museos -->
+    <string name="nom_museo1">Museo Nacional Thyssen-Bornemisza</string>
+    <string name="dir_museo1">P.º del Prado, 8, 28014 Madrid</string>
+    <string name="desc_museo1">Museo que alberga obras maestras europeas del s. XIII al XX, desde el Renacimiento hasta el Arte pop.</string>
+
+    <string name="nom_museo2">Museo Arqueológico Nacional (MAN)</string>
+    <string name="dir_museo2">C. de Serrano, 13, 28001 Madrid</string>
+    <string name="desc_museo2">Museo en un edificio neoclásico con obras antiguas y modernas, como arte rupestre y cerámica islámica.</string>
+
+    <string name="nom_museo3">Museo Nacional del Prado</string>
+    <string name="dir_museo3">C. de Ruiz de Alarcón, 23, 28014 Madrid</string>
+    <string name="desc_museo3">Colección de obras de arte de los siglos XII a XIX y obras maestras de Velázquez, Goya y el Greco.</string>
+
+    <string name="nom_museo4">Museo Nacional de Ciencias Naturales</string>
+    <string name="dir_museo4">C. de José Gutiérrez Abascal, 2, 28006 Madrid</string>
+    <string name="desc_museo4">Colecciones con fósiles y réplicas de dinosaurios y de un esqueleto de ballena en un edificio del siglo XIX.</string>
+
+    <string name="nom_museo5">Museo del Ferrocarril de Madrid</string>
+    <string name="dir_museo5">Paseo de las Delicias, 61, 28045 Madrid</string>
+    <string name="desc_museo5">Museo de la historia del ferrocarril en una antigua gran estación, con vagones, locomotoras y documentos.</string>
+
+    <!-- Recursos de hoteles -->
+    <string name="nom_hotel1">Hotel Atlántico Madrid</string>
+    <string name="dir_hotel1">C.Gran Vía, 38, 28013 Madrid</string>
+    <string name="desc_hotel1">Este sofisticado hotel, que ocupa un edificio con fachada ornamentada, se encuentra en la animada Gran Vía, a 1 minuto a pie de la estación de metro de Callao, a 10 del Palacio Real de Madrid y a 2 km del Museo Nacional del Prado.</string>
+
+    <string name="nom_hotel2">Hotel NH Collection Madrid Gran Vía</string>
+    <string name="dir_hotel2">C.Gran Vía, 21, 28013 Madrid</string>
+    <string name="desc_hotel2">Este hotel lujoso está en la Gran Vía, una calle animada junto a numerosos restaurantes y tiendas, a 1 minuto a pie de la estación de metro más cercana y a 15 minutos a pie del Museo Nacional del Prado y del Retiro, un parque extenso que data del siglo XIX.</string>
+
+    <string name="nom_hotel3">Wellington Hotel - Spa Madrid</string>
+    <string name="dir_hotel3">C. de Velázquez, 8, 28001 Madrid</string>
+    <string name="desc_hotel3">Este hotel, que ocupa un edificio majestuoso, se encuentra a 2 km de las obras de arte expuestas en el Museo Nacional del Prado, a 3 del Palacio Real de Madrid y a 16 del frondoso parque del Retiro.</string>
+
+    <string name="nom_hotel4">Hotel Villa Real</string>
+    <string name="dir_hotel4">Pl. de las Cortes, 10, 28014 Madrid</string>
+    <string name="desc_hotel4">Este lujoso hotel, decorado con obras de arte antiguas y pinturas modernas, se encuentra en la plaza de las Cortes, a 6 minutos a pie de la estación de metro Sevilla y a 7 del Museo Nacional del Prado.</string>
+
+    <string name="nom_hotel5">Hotel Catalonia Puerta Del Sol</string>
+    <string name="dir_hotel5">C. de Atocha, 23, 28012 Madrid</string>
+    <string name="desc_hotel5">Este hotel moderno, ubicado en un edificio con patio del siglo XVIII, está a 5 minutos a pie de la estación de metro de la Puerta del Sol y de la Plaza Mayor.</string>
+
+    <!-- Recursos de apartamentos -->
+    <string name="nom_apartamento1">Apartamentos Madrid Plaza</string>
+    <string name="dir_apartamento1">Pl. de España, 6, 28008 Madrid</string>
+    <string name="desc_apartamento1">Apartamentos de media y larga estancia con todas las comodidades en Plaza de España, en el centro de Madrid</string>
+
+    <string name="nom_apartamento2">Apartamentos Coloreros</string>
+    <string name="dir_apartamento2">C. de los Coloreros, 4, 28013 Madrid</string>
+    <string name="desc_apartamento2">Edificio histórico en el centro de Madrid con 5 apartamentos y 15 habitaciones privadas disponibles tanto como alojamiento turístico como para celebraciones.</string>
+
+    <string name="nom_apartamento3">Apartamentos Juan Bravo</string>
+    <string name="dir_apartamento3">C. de Juan Bravo, 58-60, 28006 Madrid</string>
+    <string name="desc_apartamento3">Apartotel de estilo desenfadado con estudios y apartamentos sencillos, y piscina exterior con solárium.</string>
+
+    <string name="nom_apartamento4">Madrid rental flats</string>
+    <string name="dir_apartamento4">C. de Miguel Ángel, 3, 28010 Madrid</string>
+    <string name="desc_apartamento4">Edificio residencial de apartamentos y áticos de una y dos habitaciones amueblados y equipados. Permitimos adaptar los periodos de estancia a las necesidades de los clientes.</string>
+
+    <string name="nom_apartamento5">Stylish City Apartamentos</string>
+    <string name="dir_apartamento5">37, C. de Luis Cabrera, 5A, 28002 Madrid</string>
+    <string name="desc_apartamento5">El apartotel dispone de apartamentos elegantes y suites con cocina y pantalla plana en un entorno tranquilo.</string>
 </resources>
