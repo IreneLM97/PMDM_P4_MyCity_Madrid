@@ -16,6 +16,15 @@ object CategoriasDataSource {
         )
     }
 
+    /*
+    * val Categorias = listOf(
+    *  R.string.hosteleria,
+    *  R.string.ocio,
+    *  R.string.cultura,
+    *  R.string.alojamiento
+    * )
+    */
+
     /**
      * Opciones de hostelería
      */
@@ -26,6 +35,13 @@ object CategoriasDataSource {
         )
     }
 
+    /*
+    * val catHosteleria = listOf(
+    *  R.string.cafeterias,
+    *  R.string.restaurantes
+    * )
+    */
+
     /**
      * Opciones de ocio
      */
@@ -35,6 +51,16 @@ object CategoriasDataSource {
         R.string.parques
     )
 
+    /*
+    fun leerCatOcio(): List<Int> {
+        return listOf<Int>(
+            R.string.centros_comerciales,
+            R.string.cines,
+            R.string.parques
+        )
+    }
+    */
+
     /**
      * Opciones de cultura
      */
@@ -43,6 +69,14 @@ object CategoriasDataSource {
         R.string.museos
     )
 
+    /* fun leerCatCultura(): List<Int> {
+        return listOf<Int>(
+            R.string.monumentos,
+            R.string.museos
+        )
+    }
+    */
+
     /**
      * Opciones de alojamientos
      */
@@ -50,4 +84,12 @@ object CategoriasDataSource {
         R.string.hoteles,
         R.string.apartamentos
     )
+
+    /*  fun leerCatAlojamientos(): List<Int> {
+        return listOf<Int>(
+            R.string.hoteles,
+            R.string.apartamentos
+        )
+    }
+    */
 }
