@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">PMDM_P4_MyCity_Madrid</string>
 
+    <string name="silueta">silueta</string>
+    <string name="madrid">MADRID</string>
+    <string name="skyline">SKYLINE</string>
+    <string name="category_icon">category_icon</string>
+    <string name="expand_button_content_description">See more or less information about a category.</string>
+
     <!-- Recursos de categorías -->
     <string name="hosteleria">Hosteleria</string>
     <string name="ocio">Ocio</string>
@@ -208,4 +214,5 @@
     <string name="nom_apartamento5">Stylish City Apartamentos</string>
     <string name="dir_apartamento5">37, C. de Luis Cabrera, 5A, 28002 Madrid</string>
     <string name="desc_apartamento5">El apartotel dispone de apartamentos elegantes y suites con cocina y pantalla plana en un entorno tranquilo.</string>
+
 </resources>
