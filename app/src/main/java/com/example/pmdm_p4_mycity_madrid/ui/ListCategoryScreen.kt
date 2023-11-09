@@ -50,7 +50,7 @@ import com.example.pmdm_p4_mycity_madrid.data.CategoriasDataSource
 import com.example.pmdm_p4_mycity_madrid.model.Categoria
 
 /**
- * Función que estructura la vista de lista de categorías
+ * Función que estructura la vista de lista de categorías.
  */
 @Composable
 fun ListCategoryScreen(
@@ -71,7 +71,7 @@ fun ListCategoryScreen(
 }
 
 /**
- * Función para mostrar una cabecera de la página con la silueta de la ciudad
+ * Función para mostrar una cabecera de la página con la silueta de la ciudad.
  */
 @Composable
 fun ShowHeader() {
@@ -104,7 +104,7 @@ fun ShowHeader() {
 }
 
 /**
- * Función para mostrar las listas desplegables de categorías
+ * Función para mostrar las listas desplegables de categorías.
  */
 @Composable
 fun ShowListCategories(
@@ -126,7 +126,7 @@ fun ShowListCategories(
 }
 
 /**
- * Función para dibujar una línea horizontal
+ * Función para dibujar una línea horizontal.
  */
 @Composable
 fun Line() {
@@ -139,7 +139,7 @@ fun Line() {
 }
 
 /**
- * Función para mostrar una categoría
+ * Función para mostrar una categoría.
  */
 @Composable
 fun CategoryItem(
@@ -194,7 +194,7 @@ fun CategoryItem(
 }
 
 /**
- * Función para mostrar la información de la categoría
+ * Función para mostrar la información de la categoría.
  */
 @Composable
 private fun CategoryInfo(
@@ -220,6 +220,9 @@ private fun CategoryInfo(
     )
 }
 
+/**
+ * Función para mostrar el icono de expandir de la categoría.
+ */
 @Composable
 private fun CategoryItemButton(
     expanded: Boolean,
@@ -239,7 +242,7 @@ private fun CategoryItemButton(
 }
 
 /**
- * Función para previsualizar la pantalla
+ * Función para previsualizar la pantalla.
  */
 @Preview
 @Composable

@@ -21,12 +21,12 @@ import androidx.navigation.compose.composable
 import com.example.pmdm_p4_mycity_madrid.ui.ListCategoryScreen
 
 /**
- * Representan las distintas pantallas de la aplicación.
+ * Representan las distintas páginas de la aplicación.
  */
 enum class MyCityScreen {
-    ListCategory,
-    ListRecommendation,
-    PlaceSummary
+    ListCategory,  // página que muestra lista de categorías
+    ListRecommendation,  // página que muestra recomendaciones de una categoría
+    PlaceSummary  // página que muestra resumen de un lugar recomendado
 }
 
 /**
@@ -59,7 +59,7 @@ fun MyCityAppBar(
 }
 
 /**
- * Función para navegar por las pantallas de la aplicación.
+ * Función para navegar por las páginas de la aplicación.
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

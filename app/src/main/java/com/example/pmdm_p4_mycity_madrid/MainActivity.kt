@@ -23,20 +23,15 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MadridApp()
+                    MyCityApp()
                 }
             }
         }
     }
 }
 
-@Composable
-fun MadridApp() {
-    MyCityApp()
-}
-
 @Preview
 @Composable
-fun MadridAppPreview() {
+fun MyCityAppPreview() {
     MyCityApp()
 }
