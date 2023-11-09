@@ -30,9 +30,9 @@ object CategoriasDataSource {
     fun getCategorias(): List<Categoria> {
         return listOf(
             Categoria(R.drawable.icon_hosteleria, R.string.hosteleria, subHosteleria),
-            Categoria(R.drawable.icon_hosteleria, R.string.ocio, subOcio),
-            Categoria(R.drawable.icon_hosteleria, R.string.cultura, subCultura),
-            Categoria(R.drawable.icon_hosteleria, R.string.alojamiento, subAlojamiento),
+            Categoria(R.drawable.icon_ocio, R.string.ocio, subOcio),
+            Categoria(R.drawable.icon_cultura, R.string.cultura, subCultura),
+            Categoria(R.drawable.icon_alojamiento, R.string.alojamiento, subAlojamiento),
         )
     }
 

@@ -176,8 +176,10 @@ fun CategoryItem(
                 )
             }
             if (expanded) {
-                Column {
-                    categoria.subCategorias.forEach { subCategoria ->
+                Column (
+
+                ) {
+                    categoria.subcategorias.forEach { subCategoria ->
                         Text(
                             text = stringResource(subCategoria),
                             fontSize = 25.sp,
