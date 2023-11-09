@@ -14,19 +14,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.pmdm_p4_mycity_madrid.ui.ListCategoryScreen
+import com.example.pmdm_p4_mycity_madrid.data.CategoriesDataSource
+import com.example.pmdm_p4_mycity_madrid.ui.CategoriesListScreen
+import com.example.pmdm_p4_mycity_madrid.ui.PlacesViewModel
 
 /**
  * Representan las distintas páginas de la aplicación.
  */
 enum class MyCityScreen {
-    ListCategory,  // página que muestra lista de categorías
-    ListRecommendation,  // página que muestra recomendaciones de una categoría
-    PlaceSummary  // página que muestra resumen de un lugar recomendado
+    CategoriesList,  // página que muestra lista de categorías
+    PlacesList // página que muestra recomendaciones de una categoría
 }
 
 /**
@@ -64,7 +66,7 @@ fun MyCityAppBar(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyCityApp(
-    //viewModel: OrderViewModel = viewModel(),
+    viewModel: PlacesViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
 ) {
     Scaffold(
@@ -79,12 +81,13 @@ fun MyCityApp(
 
         NavHost(
             navController = navController,
-            startDestination = MyCityScreen.ListCategory.name,
+            startDestination = MyCityScreen.CategoriesList.name,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(route = MyCityScreen.ListCategory.name) {
-                ListCategoryScreen(
-
+            composable(route = MyCityScreen.CategoriesList.name) {
+                CategoriesListScreen(
+                    categories = CategoriesDataSource.getCategories(),
+                    // CONTINUAR HACIENDO LLAMADA A CLICK DEL ITEM SUBCATEGORIA
                 )
             }
 
