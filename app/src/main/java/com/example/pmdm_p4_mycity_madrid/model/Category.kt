@@ -6,5 +6,5 @@ import androidx.annotation.StringRes
 data class Category(
     @DrawableRes val imageResourceId: Int,
     @StringRes val nameResourceId: Int,
-    val subcategories: List<Int>
+    val subcategories: List<Subcategory>
 )

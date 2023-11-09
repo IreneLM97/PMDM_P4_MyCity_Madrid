@@ -48,12 +48,14 @@ import androidx.compose.ui.unit.sp
 import com.example.pmdm_p4_mycity_madrid.R
 import com.example.pmdm_p4_mycity_madrid.data.CategoriesDataSource
 import com.example.pmdm_p4_mycity_madrid.model.Category
+import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 
 /**
  * Define la estructura que tendrá la pantalla que lista las categorías.
  */
 @Composable
-fun ListCategoryScreen(
+fun CategoriesListScreen(
+    categories: List<Category>,
     modifier: Modifier = Modifier
 ){
     Column(
@@ -61,20 +63,20 @@ fun ListCategoryScreen(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         // Creamos la cabecera de la página
-        ShowHeader()
+        Header()
 
         // Creamos las listas desplegables
-        ShowListCategories(
-            CategoriesDataSource.getCategories()
+        CategoriesList(
+            categories
         )
     }
 }
 
 /**
- * Función para mostrar el nombre y la silueta de la ciudad.
+ * Define la estructura que tendrá el inicio de la página con la silueta y el nombre de la ciudad.
  */
 @Composable
-private fun ShowHeader() {
+private fun Header() {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -104,10 +106,10 @@ private fun ShowHeader() {
 }
 
 /**
- * Función para mostrar las listas desplegables de categorías.
+ * Define la estructura que tendrá la lista de desplegables de categorías principales.
  */
 @Composable
-private fun ShowListCategories(
+private fun CategoriesList(
     categories: List<Category>,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
@@ -126,7 +128,7 @@ private fun ShowListCategories(
 }
 
 /**
- * Función para dibujar una línea horizontal.
+ * Dibuja una línea horizontal.
  */
 @Composable
 private fun Line() {
@@ -139,7 +141,7 @@ private fun Line() {
 }
 
 /**
- * Función para mostrar una categoría.
+ * Define la estructura que tendrá cada categoría en la lista.
  */
 @Composable
 private fun CategoryItem(
@@ -176,14 +178,14 @@ private fun CategoryItem(
                 )
             }
             if (expanded) {
-                ShowSubcategoriesList(category.subcategories)
+                SubcategoriesList(category.subcategories)
             }
         }
     }
 }
 
 /**
- * Función para mostrar la información de la categoría.
+ * Define la estructura que tendrá la información de la categoría.
  */
 @Composable
 private fun CategoryInfo(
@@ -210,7 +212,7 @@ private fun CategoryInfo(
 }
 
 /**
- * Función para mostrar el icono de expandir de la categoría.
+ * Define el icono de expandir de la categoría.
  */
 @Composable
 private fun CategoryItemButton(
@@ -231,20 +233,20 @@ private fun CategoryItemButton(
 }
 
 /**
- * Función para mostrar las subcategorías de una categoría principal.
+ * Define la estructura que tendrán las subcategorías de cada categoría principal.
  * Se llama a esta función al expandir una categoría.
  */
 @Composable
-private fun ShowSubcategoriesList(
-    subcategorias: List<Int>
+private fun SubcategoriesList(
+    subcategories: List<Subcategory>
 ) {
     Column (
         modifier = Modifier
             .background(colorResource(id = R.color.black))
     ) {
-        subcategorias.forEach { subCategoria ->
+        subcategories.forEach { subcategory ->
             Text(
-                text = stringResource(subCategoria),
+                text = stringResource(subcategory.nameResourceId),
                 fontSize = 25.sp,
                 modifier = Modifier
                     .padding(dimensionResource(R.dimen.padding_small))
@@ -259,7 +261,8 @@ private fun ShowSubcategoriesList(
 @Preview
 @Composable
 fun ListCategoryScreenPreview(){
-    ListCategoryScreen(
+    CategoriesListScreen(
+        categories = CategoriesDataSource.getCategories(),
         modifier = Modifier
             .fillMaxSize()
             .padding(dimensionResource(R.dimen.padding_medium))
