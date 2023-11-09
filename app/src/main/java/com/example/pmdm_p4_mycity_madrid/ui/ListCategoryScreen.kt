@@ -46,11 +46,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pmdm_p4_mycity_madrid.R
-import com.example.pmdm_p4_mycity_madrid.data.CategoriasDataSource
-import com.example.pmdm_p4_mycity_madrid.model.Categoria
+import com.example.pmdm_p4_mycity_madrid.data.CategoriesDataSource
+import com.example.pmdm_p4_mycity_madrid.model.Category
 
 /**
- * Función que estructura la vista de lista de categorías.
+ * Define la estructura que tendrá la pantalla que lista las categorías.
  */
 @Composable
 fun ListCategoryScreen(
@@ -60,21 +60,21 @@ fun ListCategoryScreen(
         modifier = modifier,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        // Dibujamos la cabecera de la página
+        // Creamos la cabecera de la página
         ShowHeader()
 
-        // Dibujamos las listas desplegables
+        // Creamos las listas desplegables
         ShowListCategories(
-            CategoriasDataSource.getCategorias()
+            CategoriesDataSource.getCategories()
         )
     }
 }
 
 /**
- * Función para mostrar una cabecera de la página con la silueta de la ciudad.
+ * Función para mostrar el nombre y la silueta de la ciudad.
  */
 @Composable
-fun ShowHeader() {
+private fun ShowHeader() {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -107,8 +107,8 @@ fun ShowHeader() {
  * Función para mostrar las listas desplegables de categorías.
  */
 @Composable
-fun ShowListCategories(
-    categorias: List<Categoria>,
+private fun ShowListCategories(
+    categories: List<Category>,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
@@ -117,9 +117,9 @@ fun ShowListCategories(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
         modifier = modifier.padding(top = dimensionResource(R.dimen.padding_medium)),
     ) {
-        items(categorias) { categoria ->
+        items(categories) { category ->
             CategoryItem(
-                categoria = categoria
+                category = category
             )
         }
     }
@@ -129,7 +129,7 @@ fun ShowListCategories(
  * Función para dibujar una línea horizontal.
  */
 @Composable
-fun Line() {
+private fun Line() {
     Box(
         modifier = Modifier
             .width(250.dp)
@@ -142,8 +142,8 @@ fun Line() {
  * Función para mostrar una categoría.
  */
 @Composable
-fun CategoryItem(
-    categoria: Categoria
+private fun CategoryItem(
+    category: Category
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -166,8 +166,8 @@ fun CategoryItem(
                     .padding(dimensionResource(R.dimen.padding_small))
             ) {
                 CategoryInfo(
-                    categoria.imageResourceId,
-                    categoria.nombreResourceId
+                    category.imageResourceId,
+                    category.nameResourceId
                 )
                 Spacer(Modifier.weight(1f))
                 CategoryItemButton(
@@ -176,18 +176,7 @@ fun CategoryItem(
                 )
             }
             if (expanded) {
-                Column (
-
-                ) {
-                    categoria.subcategorias.forEach { subCategoria ->
-                        Text(
-                            text = stringResource(subCategoria),
-                            fontSize = 25.sp,
-                            modifier = Modifier
-                                .padding(dimensionResource(R.dimen.padding_small))
-                        )
-                    }
-                }
+                ShowSubcategoriesList(category.subcategories)
             }
         }
     }
@@ -242,6 +231,29 @@ private fun CategoryItemButton(
 }
 
 /**
+ * Función para mostrar las subcategorías de una categoría principal.
+ * Se llama a esta función al expandir una categoría.
+ */
+@Composable
+private fun ShowSubcategoriesList(
+    subcategorias: List<Int>
+) {
+    Column (
+        modifier = Modifier
+            .background(colorResource(id = R.color.black))
+    ) {
+        subcategorias.forEach { subCategoria ->
+            Text(
+                text = stringResource(subCategoria),
+                fontSize = 25.sp,
+                modifier = Modifier
+                    .padding(dimensionResource(R.dimen.padding_small))
+            )
+        }
+    }
+}
+
+/**
  * Función para previsualizar la pantalla.
  */
 @Preview
@@ -251,6 +263,5 @@ fun ListCategoryScreenPreview(){
         modifier = Modifier
             .fillMaxSize()
             .padding(dimensionResource(R.dimen.padding_medium))
-            .background(colorResource(R.color.my_purple_light))
     )
 }
