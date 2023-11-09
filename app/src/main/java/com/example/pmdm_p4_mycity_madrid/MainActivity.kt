@@ -32,11 +32,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MadridApp() {
-    ListCategoryScreen()
+    MyCityApp()
 }
 
 @Preview
 @Composable
 fun MadridAppPreview() {
-    MadridApp()
+    MyCityApp()
 }
