@@ -180,7 +180,7 @@ fun CategoryItem(
                     categoria.subCategorias.forEach { subCategoria ->
                         Text(
                             text = stringResource(subCategoria),
-                            fontSize = 50.sp,
+                            fontSize = 25.sp,
                             modifier = Modifier
                                 .padding(dimensionResource(R.dimen.padding_small))
                         )
