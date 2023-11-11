@@ -12,7 +12,7 @@ object PlacesDataSource {
             Place(4, R.drawable.cafe4, R.string.nom_cafe4, R.string.dir_cafe4, R.string.desc_cafe4),
             Place(5, R.drawable.cafe5, R.string.nom_cafe5, R.string.dir_cafe5, R.string.desc_cafe5),
             Place(6, R.drawable.cafe6, R.string.nom_cafe6, R.string.dir_cafe6, R.string.desc_cafe6),
-            Place(5, R.drawable.cafe7, R.string.nom_cafe7, R.string.dir_cafe7, R.string.desc_cafe7),
+            Place(7, R.drawable.cafe7, R.string.nom_cafe7, R.string.dir_cafe7, R.string.desc_cafe7),
         )
     }
 
