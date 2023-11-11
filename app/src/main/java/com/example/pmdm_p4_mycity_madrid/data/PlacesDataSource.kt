@@ -3,7 +3,11 @@ package com.example.pmdm_p4_mycity_madrid.data
 import com.example.pmdm_p4_mycity_madrid.R
 import com.example.pmdm_p4_mycity_madrid.model.Place
 
+/**
+ * Objeto singleton que proporciona datos simulados de lugares para diferentes categorías.
+ */
 object PlacesDataSource {
+    /** Función que devuelve lista de cafeterías */
     fun getCafeterias(): List<Place> {
         return listOf(
             Place(1, R.drawable.cafe1, R.string.nom_cafe1, R.string.dir_cafe1, R.string.desc_cafe1),
@@ -16,6 +20,7 @@ object PlacesDataSource {
         )
     }
 
+    /** Función que devuelve lista de restaurantes */
     fun getRestaurantes(): List<Place> {
         return listOf(
             Place(1, R.drawable.rest1, R.string.nom_restaurante1, R.string.dir_restaurante1, R.string.desc_restaurante1),
@@ -28,6 +33,7 @@ object PlacesDataSource {
         )
     }
 
+    /** Función que devuelve lista de centros comerciales */
     fun getComerciales(): List<Place> {
         return listOf(
             Place(1, R.drawable.comercial1, R.string.nom_comercial1, R.string.dir_comercial1, R.string.desc_comercial1),
@@ -39,6 +45,7 @@ object PlacesDataSource {
         )
     }
 
+    /** Función que devuelve lista de cines */
     fun getCines(): List<Place> {
         return listOf(
             Place(1, R.drawable.cine1, R.string.nom_cine1, R.string.dir_cine1, R.string.desc_cine1),
@@ -49,6 +56,7 @@ object PlacesDataSource {
         )
     }
 
+    /** Función que devuelve lista de parques */
     fun getParques(): List<Place> {
         return listOf(
             Place(1, R.drawable.parq1, R.string.nom_parque1, R.string.dir_parque1, R.string.desc_parque1),
@@ -59,6 +67,7 @@ object PlacesDataSource {
         )
     }
 
+    /** Función que devuelve lista de monumentos */
     fun getMonumentos(): List<Place> {
         return listOf(
             Place(1, R.drawable.monu1, R.string.nom_monumento1, R.string.dir_monumento1, R.string.desc_monumento1),
@@ -69,6 +78,7 @@ object PlacesDataSource {
         )
     }
 
+    /** Función que devuelve lista de museos */
     fun getMuseos(): List<Place> {
         return listOf(
             Place(1, R.drawable.muse1, R.string.nom_museo1, R.string.dir_museo1, R.string.desc_museo1),
@@ -80,6 +90,7 @@ object PlacesDataSource {
         )
     }
 
+    /** Función que devuelve lista de hoteles */
     fun getHoteles(): List<Place> {
         return listOf(
             Place(1, R.drawable.hote1, R.string.nom_hotel1, R.string.dir_hotel1, R.string.desc_hotel1),
@@ -91,6 +102,7 @@ object PlacesDataSource {
         )
     }
 
+    /** Función que devuelve lista de apartamentos */
     fun getApartamentos(): List<Place> {
         return listOf(
             Place(1, R.drawable.apar1, R.string.nom_apartamento1, R.string.dir_apartamento1, R.string.desc_apartamento1),
