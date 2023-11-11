@@ -6,6 +6,10 @@
     <string name="madrid">MADRID</string>
     <string name="skyline">SKYLINE</string>
     <string name="category_icon">Icono de la categoría</string>
+    <string name="ubication_icon">Icono de ubicación</string>
+    <string name="description_icon">Icono de descripción</string>
+    <string name="place_image">Imagen del lugar</string>
+
     <string name="expand_button_content_description">Ver más sobre la categoría</string>
     <string name="back_button">botón volver</string>
 
@@ -39,7 +43,7 @@
 
     <string name="nom_cafe3">Saint Georges Cafe</string>
     <string name="dir_cafe3">C. del Cardenal Cisneros, 62, 28010 Madrid</string>
-    <string name="desc_cafe3">Epicentro de muchos cafés de especialidad, tiene un poco de todo  y todo es de gran calidad.</string>
+    <string name="desc_cafe3">Epicenter de muchos cafés de especialidad, tiene un poco de todo  y todo es de gran calidad.</string>
 
     <string name="nom_cafe4">Santa Kafeina</string>
     <string name="dir_cafe4">C. de Viriato, 37, 28010 Madrid</string>
@@ -48,6 +52,14 @@
     <string name="nom_cafe5">Cafelito</string>
     <string name="dir_cafe5">C. del Sombrerete, 20, 28012 Madrid</string>
     <string name="desc_cafe5">Disponemos de cafés artesanos, cócteles, vinos, combinados con destilados artesanales, plato del día, postres, cervezas y refrescos.</string>
+
+    <string name="nom_cafe6">Café de la Luz</string>
+    <string name="dir_cafe6">C. de la Puebla, 8, 28004 Madrid</string>
+    <string name="desc_cafe6">Un lugar con mucho encanto y muy acogedor. Recomendables todos los smoothies que hacen con fruta natural y las tartas.</string>
+
+    <string name="nom_cafe7">Café de la Luz</string>
+    <string name="dir_cafe7">C. de las Navas de Tolosa, 3, 28013 Madrid</string>
+    <string name="desc_cafe7">Café‑bar chic, lleno de plantas, que emplea productos orgánicos y sirve tanto zumos naturales como platos veganos.</string>
 
     <!-- Recursos de restaurantes -->
     <string name="nom_restaurante1">Restaurante Arrabal</string>
@@ -70,6 +82,14 @@
     <string name="dir_restaurante5">C. del Príncipe, 3, 28012 Madrid</string>
     <string name="desc_restaurante5">Restaurante sencillo especializado en las parrilladas de carne tradicionales de Argentina.</string>
 
+    <string name="nom_restaurante6">La Primera</string>
+    <string name="dir_restaurante6">C.Gran Vía, 1, 28013 Madrid</string>
+    <string name="desc_restaurante6">Variaciones elegantes de platos clásicos de pescado de Cantabria en un concurrido restaurante de estilo moderno y sofisticado.</string>
+
+    <string name="nom_restaurante7">Bodega de los Secretos</string>
+    <string name="dir_restaurante7">C. de San Blas, 4, 28014 Madrid</string>
+    <string name="desc_restaurante7">Platos refinados de la cocina mediterránea en una evocadora bodega del siglo XVII con mesas en hornacinas de piedra.</string>
+
     <!-- Recursos de centros comerciales -->
     <string name="nom_comercial1">Centro Comercial Príncipe Pío</string>
     <string name="dir_comercial1">P.º de la Florida, 2, 28008 Madrid</string>
@@ -91,6 +111,10 @@
     <string name="dir_comercial5">C. de Aracne, s/n, 28022 Madrid</string>
     <string name="desc_comercial5">Vasto complejo vanguardista con plaza central con supermercados, cines, tiendas de moda y tecnología y bares.</string>
 
+    <string name="nom_comercial6">Centro Comercial Arturo Soria Plaza</string>
+    <string name="dir_comercial6">C. de Arturo Soria, 126, 28043 Madrid</string>
+    <string name="desc_comercial6">Edificio de ladrillo de aspecto industrial que acoge tiendas de moda, alimentación, servicios y restaurantes.</string>
+
     <!-- Recursos de cines -->
     <string name="nom_cine1">Cines Callao</string>
     <string name="dir_cine1">Pl. del Callao, 3, 28013 Madrid</string>
@@ -109,7 +133,7 @@
     <string name="desc_cine4">Una de las últimas salas con arquitectura tradicional de cine, un espacio único en Madrid para los amantes del séptimo arte.</string>
 
     <string name="nom_cine5">Golem Madrid</string>
-    <string name="dir_cine5">C. de Martín de los Heros, 14, 28008 Madrid</string>
+    <string name="dir_cine5">C. de Martín de los Heroes, 14, 28008 Madrid</string>
     <string name="desc_cine5">Moderna multisala conocida entre los cinéfilos por su oferta de películas independientes en versión original.</string>
 
     <!-- Recursos de parques -->
@@ -175,6 +199,10 @@
     <string name="dir_museo5">Paseo de las Delicias, 61, 28045 Madrid</string>
     <string name="desc_museo5">Museo de la historia del ferrocarril en una antigua gran estación, con vagones, locomotoras y documentos.</string>
 
+    <string name="nom_museo6">Museo de Historia de Madrid</string>
+    <string name="dir_museo6">C. de Fuencarral, 78, 28004 Madrid</string>
+    <string name="desc_museo6">Antiguo hospicio de exterior barroco, sede del Museo de Historia de Madrid, con documentos, arte y maquetas.</string>
+
     <!-- Recursos de hoteles -->
     <string name="nom_hotel1">Hotel Atlántico Madrid</string>
     <string name="dir_hotel1">C.Gran Vía, 38, 28013 Madrid</string>
@@ -195,6 +223,10 @@
     <string name="nom_hotel5">Hotel Catalonia Puerta Del Sol</string>
     <string name="dir_hotel5">C. de Atocha, 23, 28012 Madrid</string>
     <string name="desc_hotel5">Este hotel moderno, ubicado en un edificio con patio del siglo XVIII, está a 5 minutos a pie de la estación de metro de la Puerta del Sol y de la Plaza Mayor.</string>
+
+    <string name="nom_hotel6">Hotel Mirador de Chamartin</string>
+    <string name="dir_hotel6">C. del Arte, 14, 28033 Madrid</string>
+    <string name="desc_hotel6">El hotel cuenta con café‑bar elegante, centro de negocios, gimnasio, sauna, una piscina exterior abierta en temporada y, por un suplemento, aparcamiento y servicio de traslado al aeropuerto.</string>
 
     <!-- Recursos de apartamentos -->
     <string name="nom_apartamento1">Apartamentos Madrid Plaza</string>

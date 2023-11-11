@@ -10,7 +10,9 @@ object PlacesDataSource {
             Place(2, R.drawable.cafe2, R.string.nom_cafe2, R.string.dir_cafe2, R.string.desc_cafe2),
             Place(3, R.drawable.cafe3, R.string.nom_cafe3, R.string.dir_cafe3, R.string.desc_cafe3),
             Place(4, R.drawable.cafe4, R.string.nom_cafe4, R.string.dir_cafe4, R.string.desc_cafe4),
-            Place(5, R.drawable.cafe5, R.string.nom_cafe5, R.string.dir_cafe5, R.string.desc_cafe5)
+            Place(5, R.drawable.cafe5, R.string.nom_cafe5, R.string.dir_cafe5, R.string.desc_cafe5),
+            Place(6, R.drawable.cafe6, R.string.nom_cafe6, R.string.dir_cafe6, R.string.desc_cafe6),
+            Place(5, R.drawable.cafe7, R.string.nom_cafe7, R.string.dir_cafe7, R.string.desc_cafe7),
         )
     }
 
@@ -20,7 +22,9 @@ object PlacesDataSource {
             Place(2, R.drawable.rest2, R.string.nom_restaurante2, R.string.dir_restaurante2, R.string.desc_restaurante2),
             Place(3, R.drawable.rest3, R.string.nom_restaurante3, R.string.dir_restaurante3, R.string.desc_restaurante3),
             Place(4, R.drawable.rest4, R.string.nom_restaurante4, R.string.dir_restaurante4, R.string.desc_restaurante4),
-            Place(5, R.drawable.rest5, R.string.nom_restaurante5, R.string.dir_restaurante5, R.string.desc_restaurante5)
+            Place(5, R.drawable.rest5, R.string.nom_restaurante5, R.string.dir_restaurante5, R.string.desc_restaurante5),
+            Place(6, R.drawable.rest6, R.string.nom_restaurante6, R.string.dir_restaurante6, R.string.desc_restaurante6),
+            Place(7, R.drawable.rest7, R.string.nom_restaurante7, R.string.dir_restaurante7, R.string.desc_restaurante7)
         )
     }
 
@@ -30,7 +34,8 @@ object PlacesDataSource {
             Place(2, R.drawable.comercial2, R.string.nom_comercial2, R.string.dir_comercial2, R.string.desc_comercial2),
             Place(3, R.drawable.comercial3, R.string.nom_comercial3, R.string.dir_comercial3, R.string.desc_comercial3),
             Place(4, R.drawable.comercial4, R.string.nom_comercial4, R.string.dir_comercial4, R.string.desc_comercial4),
-            Place(5, R.drawable.comercial5, R.string.nom_comercial5, R.string.dir_comercial5, R.string.desc_comercial5)
+            Place(5, R.drawable.comercial5, R.string.nom_comercial5, R.string.dir_comercial5, R.string.desc_comercial5),
+            Place(6, R.drawable.comercial6, R.string.nom_comercial6, R.string.dir_comercial6, R.string.desc_comercial6)
         )
     }
 
@@ -70,7 +75,8 @@ object PlacesDataSource {
             Place(2, R.drawable.muse2, R.string.nom_museo2, R.string.dir_museo2, R.string.desc_museo2),
             Place(3, R.drawable.muse3, R.string.nom_museo3, R.string.dir_museo3, R.string.desc_museo3),
             Place(4, R.drawable.muse4, R.string.nom_museo4, R.string.dir_museo4, R.string.desc_museo4),
-            Place(5, R.drawable.muse5, R.string.nom_museo5, R.string.dir_museo5, R.string.desc_museo5)
+            Place(5, R.drawable.muse5, R.string.nom_museo5, R.string.dir_museo5, R.string.desc_museo5),
+            Place(6, R.drawable.muse6, R.string.nom_museo6, R.string.dir_museo6, R.string.desc_museo6)
         )
     }
 
@@ -80,7 +86,8 @@ object PlacesDataSource {
             Place(2, R.drawable.hote2, R.string.nom_hotel2, R.string.dir_hotel2, R.string.desc_hotel2),
             Place(3, R.drawable.hote3, R.string.nom_hotel3, R.string.dir_hotel3, R.string.desc_hotel3),
             Place(4, R.drawable.hote4, R.string.nom_hotel4, R.string.dir_hotel4, R.string.desc_hotel4),
-            Place(5, R.drawable.hote5, R.string.nom_hotel5, R.string.dir_hotel5, R.string.desc_hotel5)
+            Place(5, R.drawable.hote5, R.string.nom_hotel5, R.string.dir_hotel5, R.string.desc_hotel5),
+            Place(6, R.drawable.hote6, R.string.nom_hotel6, R.string.dir_hotel6, R.string.desc_hotel6)
         )
     }
 
