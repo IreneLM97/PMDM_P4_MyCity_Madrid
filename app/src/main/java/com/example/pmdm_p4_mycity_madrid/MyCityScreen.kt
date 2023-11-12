@@ -106,7 +106,9 @@ fun MyCityApp(
                 PlacesListScreen(
                     viewModel = viewModel,
                     windowSize = windowSize,
-                    onBackPressed = {}  // TODO PROGRAMAR BACK PRESSED
+                    onBackPressed = {
+                        navController.popBackStack()
+                    }
                 )
             }
         }

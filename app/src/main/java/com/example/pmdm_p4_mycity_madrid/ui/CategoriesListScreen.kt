@@ -63,7 +63,8 @@ fun CategoriesListScreen(
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
         modifier = modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .padding(bottom = dimensionResource(R.dimen.padding_medium)),
     ) {
         // Creamos una cabecera con la silueta de la ciudad
         item {
@@ -240,6 +241,8 @@ private fun SubcategoriesList(
     Column (
         modifier = Modifier
             .background(colorResource(R.color.my_light_purple))
+            .padding(top = dimensionResource(R.dimen.padding_small))
+            .padding(bottom = dimensionResource(R.dimen.padding_small))
     ) {
         subcategories.forEach { subcategory ->
             Row (

@@ -1,7 +1,7 @@
 package com.example.pmdm_p4_mycity_madrid.ui
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -88,7 +88,13 @@ fun PlacesListScreen(
         topBar = {
             PlacesListBar(
                 isShowingListPage = uiState.isShowingListPage,
-                onBackButtonClick = { viewModel.navigateToListPlacesPage() },
+                onBackButtonClick = {
+                    if (contentType == PlacesContentType.ListOnly && !uiState.isShowingListPage) {
+                        viewModel.navigateToListPlacesPage()
+                    } else {
+                        onBackPressed()
+                    }
+                },
                 windowSize = windowSize,
                 currentSubcategory = uiState.currentSubcategory,
                 currentPlace = uiState.currentPlace
@@ -102,7 +108,6 @@ fun PlacesListScreen(
                 onClick = {
                     viewModel.updateCurrentPlace(it)
                 },
-                onBackPressed = onBackPressed,
                 contentPadding = innerPadding,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -121,9 +126,6 @@ fun PlacesListScreen(
                 PlaceDetail(
                     selectedPlace = uiState.currentPlace,
                     contentPadding = innerPadding,
-                    onBackPressed = {
-                        viewModel.navigateToListPlacesPage()
-                    }
                 )
             }
         }
@@ -141,20 +143,23 @@ private fun PlacesListBar(
     modifier: Modifier = Modifier
 ) {
     val isShowingDetailPage = windowSize != WindowWidthSizeClass.Expanded && !isShowingListPage
+
     TopAppBar(
         title = {
             Text(
                 text =
-                    if (isShowingDetailPage) {  // se muestra la lista y los detalles
+                    if (isShowingDetailPage) {  // se muestra solo la información del lugar
                         stringResource(id = currentPlace.nameResourceId)
-                    } else {  // sólo se muestra la lista
+                    } else {  // se muestra la lista y la información del lugar
                         stringResource(id = currentSubcategory.nameResourceId)
                     },
                 fontWeight = FontWeight.Bold
             )
         },
         navigationIcon = {
-            IconButton(onClick = onBackButtonClick) {
+            IconButton(
+                onClick = onBackButtonClick
+            ) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = stringResource(R.string.back_button)
@@ -178,7 +183,9 @@ private fun PlacesList(
     LazyColumn(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
-        modifier = modifier.padding(top = dimensionResource(R.dimen.padding_medium)),
+        modifier = modifier
+            .padding(top = dimensionResource(R.dimen.padding_small))
+            .padding(bottom = dimensionResource(R.dimen.padding_small)),
     ) {
         items(places, key = { place -> place.id }) { place ->
             PlaceItem(
@@ -200,11 +207,14 @@ private fun PlaceItem(
         elevation = CardDefaults.cardElevation(),
         modifier = modifier,
         shape = RoundedCornerShape(dimensionResource(R.dimen.card_corner_radius)),
-        onClick = { onItemClick(place) }
+        onClick = {
+            onItemClick(place)
+        }
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .background(colorResource(id = R.color.my_light_purple))
                 .size(dimensionResource(R.dimen.card_image_height))
         ) {
             PlaceItemImage(
@@ -259,15 +269,9 @@ private fun PlaceItemImage(
 @Composable
 private fun PlaceDetail(
     selectedPlace: Place,
-    onBackPressed: () -> Unit,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    // Maneja la acción de pulsar el botón de volver atrás
-    BackHandler {
-        onBackPressed()
-    }
-
     // Estado del scroll
     val scrollState = rememberScrollState()
 
@@ -398,7 +402,6 @@ private fun PlacesListAndDetail(
     places: List<Place>,
     selectedPlace: Place,
     onClick: (Place) -> Unit,
-    onBackPressed: () -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
@@ -416,8 +419,7 @@ private fun PlacesListAndDetail(
         PlaceDetail(
             selectedPlace = selectedPlace,
             modifier = Modifier.weight(3f),
-            contentPadding = contentPadding,
-            onBackPressed = onBackPressed,
+            contentPadding = contentPadding
         )
     }
 }
@@ -446,8 +448,7 @@ fun PlacesListAndDetailsPreview() {
     PlacesListAndDetail(
         places = PlacesDataSource.getCafeterias(),
         selectedPlace = PlacesDataSource.getCafeterias()[0],
-        onClick = {},
-        onBackPressed = {}
+        onClick = {}
     )
 }
 
