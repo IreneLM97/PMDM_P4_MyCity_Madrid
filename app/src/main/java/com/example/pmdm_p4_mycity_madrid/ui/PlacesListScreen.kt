@@ -2,7 +2,6 @@ package com.example.pmdm_p4_mycity_madrid.ui
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -91,7 +90,7 @@ fun PlacesListScreen(
         topBar = {
             PlacesListBar(
                 isShowingListPage = uiState.isShowingListPage,
-                onBackButtonClick = { viewModel.navigateToListPage() },
+                onBackButtonClick = { viewModel.navigateToListPlacesPage() },
                 windowSize = windowSize,
                 currentSubcategory = uiState.currentSubcategory,
                 currentPlace = uiState.currentPlace
@@ -115,7 +114,7 @@ fun PlacesListScreen(
                     places = uiState.placesList,
                     onClick = {
                         viewModel.updateCurrentPlace(it)
-                        viewModel.navigateToDetailPage()
+                        viewModel.navigateToDetailPlacePage()
                     },
                     modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_medium)),
                     contentPadding = innerPadding,
@@ -125,7 +124,7 @@ fun PlacesListScreen(
                     selectedPlace = uiState.currentPlace,
                     contentPadding = innerPadding,
                     onBackPressed = {
-                        viewModel.navigateToListPage()
+                        viewModel.navigateToListPlacesPage()
                     }
                 )
             }
@@ -165,7 +164,7 @@ private fun PlacesListBar(
             }
             },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = colorResource(R.color.my_purple_normal)
+            containerColor = colorResource(R.color.my_normal_purple)
         ),
         modifier = modifier,
     )
@@ -279,7 +278,6 @@ private fun PlaceDetail(
         modifier = modifier
             .verticalScroll(state = scrollState)
             .padding(contentPadding)
-            .background(colorResource(R.color.my_gray_lightest))
     ) {
         Column(
             modifier = Modifier
@@ -294,19 +292,14 @@ private fun PlaceDetail(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(shape = RoundedCornerShape(50.dp))
-                    .background(colorResource(R.color.my_gray_light))
-                    .border(
-                        width = 1.dp,
-                        color = colorResource(id = R.color.black),
-                        shape = RoundedCornerShape(50.dp)
-                    )
             )
 
             // Nombre del lugar
             Text(
                 text = stringResource(selectedPlace.nameResourceId),
-                style = MaterialTheme.typography.headlineLarge
-                    .copy(fontSize = 50.sp, color = colorResource(id = R.color.black)),
+                style = MaterialTheme.typography.headlineLarge,
+                fontSize = 40.sp,
+                color = colorResource(id = R.color.my_dark_gray),
                 fontStyle = FontStyle.Italic,
                 modifier = Modifier
                     .padding(horizontal = dimensionResource(R.dimen.padding_small))
@@ -317,7 +310,10 @@ private fun PlaceDetail(
 
             // Dirección del lugar
             Row(
-                modifier = Modifier.fillMaxWidth().offset(x = 10.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .offset(x = 10.dp)
+                    .padding(end = 20.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconWithText(
@@ -330,7 +326,10 @@ private fun PlaceDetail(
 
             // Descripción del lugar
             Row(
-                modifier = Modifier.fillMaxWidth().offset(x = 10.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .offset(x = 10.dp)
+                    .padding(end = 20.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconWithText(
@@ -352,10 +351,9 @@ private fun IconWithText(
         modifier = Modifier
             .size(40.dp)
             .clip(shape = RoundedCornerShape(8.dp))
-            .background(colorResource(R.color.my_gray_light))
             .border(
                 width = 1.dp,
-                color = colorResource(id = R.color.black),
+                color = colorResource(id = R.color.my_dark_gray),
                 shape = RoundedCornerShape(8.dp)
             )
             .padding(3.dp),
@@ -377,10 +375,9 @@ private fun IconWithText(
             .fillMaxHeight()
             .defaultMinSize(minHeight = 40.dp, minWidth = 600.dp)
             .clip(shape = RoundedCornerShape(8.dp))
-            .background(colorResource(R.color.my_gray_light))
             .border(
                 width = 1.dp,
-                color = colorResource(id = R.color.black),
+                color = colorResource(id = R.color.my_dark_gray),
                 shape = RoundedCornerShape(8.dp)
             )
             .padding(horizontal = dimensionResource(R.dimen.padding_small))
@@ -389,7 +386,7 @@ private fun IconWithText(
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
-            color = colorResource(id = R.color.black),
+            color = colorResource(id = R.color.my_dark_gray),
             fontSize = 20.sp,
             modifier = Modifier
                 .fillMaxWidth()
@@ -473,4 +470,3 @@ fun PlacesListScreenPreviewTablet() {
         onBackPressed = {}
     )
 }
-

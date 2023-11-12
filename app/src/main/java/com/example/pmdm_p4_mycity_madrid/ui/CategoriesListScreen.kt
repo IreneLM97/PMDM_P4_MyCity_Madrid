@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -89,12 +90,14 @@ private fun CityHeader() {
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
         Text(
             text = stringResource(R.string.madrid),
+            color = colorResource(id = R.color.my_dark_gray),
             fontSize = 40.sp,
             style = MaterialTheme.typography.headlineSmall
         )
         Line()
         Text(
             text = stringResource(R.string.skyline),
+            color = colorResource(id = R.color.my_dark_gray),
             fontSize = 20.sp,
             style = MaterialTheme.typography.headlineSmall
         )
@@ -118,7 +121,7 @@ private fun Line() {
         modifier = Modifier
             .width(250.dp)
             .height(1.dp)
-            .background(colorResource(R.color.black))
+            .background(colorResource(R.color.my_dark_gray))
     )
 }
 
@@ -186,7 +189,8 @@ private fun CategoryInfo(
     )
     Text(
         text = stringResource(categoryName),
-        style = MaterialTheme.typography.displayMedium,
+        style = MaterialTheme.typography.titleSmall,
+        color = colorResource(id = R.color.my_dark_gray),
         fontSize = 30.sp,
         modifier = Modifier
             .padding(top = dimensionResource(R.dimen.padding_medium))
@@ -224,13 +228,14 @@ private fun SubcategoriesList(
 ) {
     Column (
         modifier = Modifier
-            .background(colorResource(R.color.my_purple_light))
+            .background(colorResource(R.color.my_light_purple))
     ) {
         subcategories.forEach { subcategory ->
             Row (
                 modifier = Modifier
                     .padding(start = 16.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .offset(x = 20.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -245,6 +250,7 @@ private fun SubcategoriesList(
                 )
                 Text(
                     text = stringResource(subcategory.nameResourceId),
+                    color = colorResource(id = R.color.my_dark_gray),
                     fontSize = 25.sp,
                     modifier = Modifier
                         .padding(dimensionResource(R.dimen.padding_small))
