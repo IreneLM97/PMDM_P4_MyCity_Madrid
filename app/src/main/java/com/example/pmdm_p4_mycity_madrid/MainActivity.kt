@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.pmdm_p4_mycity_madrid.ui.theme.PMDM_P4_MyCity_MadridTheme
 
+// TODO REVISAR Y COMENTAR
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

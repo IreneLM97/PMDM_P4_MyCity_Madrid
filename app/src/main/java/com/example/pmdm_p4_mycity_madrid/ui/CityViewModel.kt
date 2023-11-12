@@ -1,20 +1,20 @@
 package com.example.pmdm_p4_mycity_madrid.ui
 
 import androidx.lifecycle.ViewModel
-import com.example.pmdm_p4_mycity_madrid.data.PlaceUiState
+import com.example.pmdm_p4_mycity_madrid.data.CityUiState
 import com.example.pmdm_p4_mycity_madrid.model.Place
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-
-class PlacesViewModel : ViewModel() {
+// TODO REVISAR Y COMENTAR
+class CityViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(
-        PlaceUiState(
+        CityUiState(
 
         )
     )
-    val uiState: StateFlow<PlaceUiState> = _uiState
+    val uiState: StateFlow<CityUiState> = _uiState
 
     fun updateCurrentPlace(selectedPlace: Place) {
         _uiState.update {

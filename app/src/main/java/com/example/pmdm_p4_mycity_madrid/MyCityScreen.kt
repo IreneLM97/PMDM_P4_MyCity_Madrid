@@ -21,8 +21,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.pmdm_p4_mycity_madrid.data.CategoriesDataSource
 import com.example.pmdm_p4_mycity_madrid.ui.CategoriesListScreen
-import com.example.pmdm_p4_mycity_madrid.ui.PlacesViewModel
+import com.example.pmdm_p4_mycity_madrid.ui.CityViewModel
 
+//TODO REVISAR Y COMENTAR
 /**
  * Representan las distintas páginas de la aplicación.
  */
@@ -44,7 +45,7 @@ fun MyCityAppBar(
     TopAppBar(
         title = { Text(stringResource(R.string.city_break)) },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = colorResource(R.color.my_purple_light)
+            containerColor = colorResource(R.color.my_purple_normal)
         ),
         modifier = modifier,
         navigationIcon = {
@@ -66,7 +67,7 @@ fun MyCityAppBar(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyCityApp(
-    viewModel: PlacesViewModel = viewModel(),
+    viewModel: CityViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
 ) {
     Scaffold(
@@ -87,7 +88,7 @@ fun MyCityApp(
             composable(route = MyCityScreen.CategoriesList.name) {
                 CategoriesListScreen(
                     categories = CategoriesDataSource.getCategories(),
-                    // CONTINUAR HACIENDO LLAMADA A CLICK DEL ITEM SUBCATEGORIA
+                    // TODO CONTINUAR HACIENDO LLAMADA A CLICK DEL ITEM SUBCATEGORIA
                 )
             }
 
