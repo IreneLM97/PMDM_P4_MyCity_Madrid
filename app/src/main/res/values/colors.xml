@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="my_purple_normal">#A298B6</color>
-    <color name="my_purple_light">#e8e6ee</color>
+    <color name="my_purple_light">#E8E6EE</color>
+    <color name="my_gray_light">#E5E4E4</color>
+    <color name="my_gray_lightest">#F3F1F0</color>
 </resources>

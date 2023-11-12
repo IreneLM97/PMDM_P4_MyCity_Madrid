@@ -2,18 +2,23 @@ package com.example.pmdm_p4_mycity_madrid.ui
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.calculateEndPadding
-import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -37,12 +42,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,9 +63,7 @@ import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 import com.example.pmdm_p4_mycity_madrid.utils.PlacesContentType
 
 // TODO COMENTAR Y REVISAR
-/**
- * Define la estructura que tendrá la pantalla que lista las recomendaciones.
- */
+// TODO AÑADIR OPCIÓN DE COMPARTIR LUGAR A OTRA APP
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlacesListScreen(
@@ -128,9 +133,6 @@ fun PlacesListScreen(
     }
 }
 
-/**
- * Función para mostrar el topBar de la aplicación y el botón de volver atrás.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PlacesListBar(
@@ -169,9 +171,27 @@ private fun PlacesListBar(
     )
 }
 
-/**
- * Define la estructura de cada lugar de la lista de recomendaciones.
- */
+@Composable
+private fun PlacesList(
+    places: List<Place>,
+    onClick: (Place) -> Unit,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+) {
+    LazyColumn(
+        contentPadding = contentPadding,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+        modifier = modifier.padding(top = dimensionResource(R.dimen.padding_medium)),
+    ) {
+        items(places, key = { place -> place.id }) { place ->
+            PlaceItem(
+                place = place,
+                onItemClick = onClick
+            )
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PlaceItem(
@@ -221,9 +241,6 @@ private fun PlaceItem(
     }
 }
 
-/**
- * Define la estructura de la imagen del lugar.
- */
 @Composable
 private fun PlaceItemImage(
     place: Place,
@@ -236,38 +253,12 @@ private fun PlaceItemImage(
             painter = painterResource(place.imageResourceId),
             contentDescription = stringResource(id = R.string.place_image),
             alignment = Alignment.Center,
-            contentScale = ContentScale.FillHeight
+            contentScale = ContentScale.FillHeight,
+            modifier = Modifier.fillMaxSize()
         )
     }
 }
 
-/**
- * Define la estructura de la lista de lugares recomendados.
- */
-@Composable
-private fun PlacesList(
-    places: List<Place>,
-    onClick: (Place) -> Unit,
-    modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(0.dp),
-) {
-    LazyColumn(
-        contentPadding = contentPadding,
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
-        modifier = modifier.padding(top = dimensionResource(R.dimen.padding_medium)),
-    ) {
-        items(places, key = { place -> place.id }) { place ->
-            PlaceItem(
-                place = place,
-                onItemClick = onClick
-            )
-        }
-    }
-}
-
-/**
- * Define la estructura que muestra la información detallada del lugar.
- */
 @Composable
 private fun PlaceDetail(
     selectedPlace: Place,
@@ -275,108 +266,138 @@ private fun PlaceDetail(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    // Maneja la acción de pulsar el botón de retroceso en Android
+    // Maneja la acción de pulsar el botón de volver atrás
     BackHandler {
         onBackPressed()
     }
+
     // Estado del scroll
     val scrollState = rememberScrollState()
-    val layoutDirection = LocalLayoutDirection.current
 
     // Estructura de la información detallada del lugar
     Box(
         modifier = modifier
-            .verticalScroll(state = scrollState)  // asigna scroll vertical al scroll actual
-            .padding(top = contentPadding.calculateTopPadding())
+            .verticalScroll(state = scrollState)
+            .padding(contentPadding)
+            .background(colorResource(R.color.my_gray_lightest))
     ) {
         Column(
             modifier = Modifier
-                .padding(
-                    bottom = contentPadding.calculateTopPadding(),
-                    start = contentPadding.calculateStartPadding(layoutDirection),
-                    end = contentPadding.calculateEndPadding(layoutDirection)
-                )
+                .padding(10.dp)
         ) {
             // Imagen del lugar
-            Box {
-                Image(
-                    painter = painterResource(selectedPlace.imageResourceId),
-                    contentDescription = stringResource(R.string.place_image),
-                    alignment = Alignment.TopCenter,
-                    contentScale = ContentScale.FillWidth,
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                )
-            }
-            // Nombre del lugar
-            Column(
-                Modifier
+            Image(
+                painter = painterResource(selectedPlace.imageResourceId),
+                contentDescription = stringResource(R.string.place_image),
+                alignment = Alignment.TopCenter,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier
                     .fillMaxWidth()
-            ) {
-                Text(
-                    text = stringResource(selectedPlace.nameResourceId),
-                    style = MaterialTheme.typography.headlineLarge,
-                    color = colorResource(id = R.color.black),
-                    fontSize = 50.sp,
-                    modifier = Modifier
-                        .padding(horizontal = dimensionResource(R.dimen.padding_small))
-                )
-            }
+                    .clip(shape = RoundedCornerShape(50.dp))
+                    .background(colorResource(R.color.my_gray_light))
+                    .border(
+                        width = 1.dp,
+                        color = colorResource(id = R.color.black),
+                        shape = RoundedCornerShape(50.dp)
+                    )
+            )
+
+            // Nombre del lugar
+            Text(
+                text = stringResource(selectedPlace.nameResourceId),
+                style = MaterialTheme.typography.headlineLarge
+                    .copy(fontSize = 50.sp, color = colorResource(id = R.color.black)),
+                fontStyle = FontStyle.Italic,
+                modifier = Modifier
+                    .padding(horizontal = dimensionResource(R.dimen.padding_small))
+                    .fillMaxWidth()
+            )
+
             Spacer(Modifier.height(10.dp))
+
             // Dirección del lugar
             Row(
-                Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().offset(x = 10.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                // Icono ubicación
-                Image(
-                    painter = painterResource(R.drawable.icon_ubicacion),
-                    contentDescription = stringResource(R.string.ubication_icon),
-                    alignment = Alignment.TopStart,
-                    modifier = Modifier
-                        .size(40.dp),
-                )
-                // Texto ubicación
-                Text(
-                    text = stringResource(selectedPlace.dirResourceId),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = colorResource(id = R.color.black),
-                    fontSize = 25.sp,
-                    modifier = Modifier
-                        .padding(horizontal = dimensionResource(R.dimen.padding_small))
+                IconWithText(
+                    icon = painterResource(R.drawable.icon_ubicacion),
+                    text = stringResource(selectedPlace.dirResourceId)
                 )
             }
+
             Spacer(Modifier.height(20.dp))
+
             // Descripción del lugar
             Row(
-                Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.fillMaxWidth().offset(x = 10.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                // Icono descripción
-                Image(
-                    painter = painterResource(R.drawable.icon_descripcion),
-                    contentDescription = stringResource(R.string.description_icon),
-                    alignment = Alignment.TopStart,
-                    modifier = Modifier
-                        .size(40.dp),
-                )
-                // Texto descripción
-                Text(
-                    text = stringResource(selectedPlace.descResourceId),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = colorResource(id = R.color.black),
-                    fontSize = 25.sp,
-                    modifier = Modifier
-                        .padding(horizontal = dimensionResource(R.dimen.padding_small))
+                IconWithText(
+                    icon = painterResource(R.drawable.icon_descripcion),
+                    text = stringResource(selectedPlace.descResourceId)
                 )
             }
         }
     }
 }
 
-/**
- * Define la estructura para mostrar la lista de lugares y su información.
- */
+@Composable
+private fun IconWithText(
+    icon: Painter,
+    text: String
+) {
+    // Estructura del icono
+    Box(
+        modifier = Modifier
+            .size(40.dp)
+            .clip(shape = RoundedCornerShape(8.dp))
+            .background(colorResource(R.color.my_gray_light))
+            .border(
+                width = 1.dp,
+                color = colorResource(id = R.color.black),
+                shape = RoundedCornerShape(8.dp)
+            )
+            .padding(3.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = icon,
+            contentDescription = null,
+            alignment = Alignment.Center,
+            modifier = Modifier.size(24.dp)
+        )
+    }
+
+    Spacer(modifier = Modifier.width(20.dp))
+
+    // Estructura del texto
+    Box(
+        modifier = Modifier
+            .fillMaxHeight()
+            .defaultMinSize(minHeight = 40.dp, minWidth = 600.dp)
+            .clip(shape = RoundedCornerShape(8.dp))
+            .background(colorResource(R.color.my_gray_light))
+            .border(
+                width = 1.dp,
+                color = colorResource(id = R.color.black),
+                shape = RoundedCornerShape(8.dp)
+            )
+            .padding(horizontal = dimensionResource(R.dimen.padding_small))
+            .padding(top = 5.dp, bottom = 5.dp)
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyMedium,
+            color = colorResource(id = R.color.black),
+            fontSize = 20.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = dimensionResource(R.dimen.padding_small))
+        )
+    }
+}
+
 @Composable
 private fun PlacesListAndDetail(
     places: List<Place>,
@@ -410,7 +431,7 @@ private fun PlacesListAndDetail(
 @Composable
 fun PlaceItemPreview() {
     PlaceItem(
-        place = PlacesDataSource.getCafeterias()[0],
+        place = PlacesDataSource.getCafeterias()[5],
         onItemClick = {}
     )
 }
@@ -440,7 +461,7 @@ fun PlacesListAndDetailsPreview() {
 fun PlacesListScreenPreviewMobile() {
     PlacesListScreen(
         windowSize = WindowWidthSizeClass.Medium,
-        onBackPressed = {  }
+        onBackPressed = {}
     )
 }
 
@@ -449,7 +470,7 @@ fun PlacesListScreenPreviewMobile() {
 fun PlacesListScreenPreviewTablet() {
     PlacesListScreen(
         windowSize = WindowWidthSizeClass.Expanded,
-        onBackPressed = {  }
+        onBackPressed = {}
     )
 }
 
