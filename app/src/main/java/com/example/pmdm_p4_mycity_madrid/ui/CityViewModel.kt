@@ -2,35 +2,55 @@ package com.example.pmdm_p4_mycity_madrid.ui
 
 import androidx.lifecycle.ViewModel
 import com.example.pmdm_p4_mycity_madrid.data.CityUiState
+import com.example.pmdm_p4_mycity_madrid.data.initialState
 import com.example.pmdm_p4_mycity_madrid.model.Place
+import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 // TODO REVISAR Y COMENTAR
 class CityViewModel : ViewModel() {
 
-    private val _uiState = MutableStateFlow(
-        CityUiState(
+    private val _uiState = MutableStateFlow(initialState)
 
-        )
-    )
     val uiState: StateFlow<CityUiState> = _uiState
 
-    fun updateCurrentPlace(selectedPlace: Place) {
+    fun updateCurrentPlace(
+        selectedPlace: Place
+    ) {
         _uiState.update {
-            it.copy(currentPlace = selectedPlace)
+            it.copy(
+                currentPlace = selectedPlace
+            )
         }
     }
 
-    fun navigateToListPage() {
+    fun updateCurrentSubcategory(
+        subcategory: Subcategory
+    ) {
         _uiState.update {
-            it.copy(isShowingListPage = true)
+            it.copy(
+                currentSubcategory = subcategory,
+                currentPlace = subcategory.places[0],
+                isShowingListPage = true
+            )
+        }
+        println("en cityviewmodel ${subcategory.nameResourceId}")
+    }
+
+    fun navigateToListPlacesPage() {
+        _uiState.update {
+            it.copy(
+                isShowingListPage = true
+            )
         }
     }
 
-    fun navigateToDetailPage() {
+    fun navigateToDetailPlacePage() {
         _uiState.update {
-            it.copy(isShowingListPage = false)
+            it.copy(
+                isShowingListPage = false
+            )
         }
     }
 }

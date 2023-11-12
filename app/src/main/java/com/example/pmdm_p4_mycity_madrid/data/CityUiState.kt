@@ -6,14 +6,18 @@ import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 /**
  * Representa el estado de la interfaz de usuario para la visualización de lugares recomendados de la ciudad.
  *
- * @property currentSubcategory subcategoría de la cual se están mostrando lugares recomendados
- * @property placesList lista de lugares recomendados activa basada en la subcategoría actual
+ * @property currentSubcategory subcategoría seleccionada por el usuario de la cual se están mostrando lugares recomendados
  * @property currentPlace lugar seleccionado por el usuario en la lista de lugares recomendados
  * @property isShowingListPage indica si la interfaz está mostrando la lista de lugares (true) o no (false)
  */
 data class CityUiState(
-    val currentSubcategory: Subcategory = CategoriesDataSource.getCategories()[0].subcategories[0],
-    val placesList: List<Place> = currentSubcategory.places,
-    val currentPlace: Place = placesList[0],
+    val currentSubcategory: Subcategory,
+    val currentPlace: Place,
     val isShowingListPage: Boolean = true
+)
+
+val initialCategory = CategoriesDataSource.getCategories()[0]
+val initialState = CityUiState(
+    currentSubcategory = initialCategory.subcategories[0],
+    currentPlace = initialCategory.subcategories[0].places[0]
 )

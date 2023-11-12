@@ -10,8 +10,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,6 +25,7 @@ import androidx.navigation.compose.composable
 import com.example.pmdm_p4_mycity_madrid.data.CategoriesDataSource
 import com.example.pmdm_p4_mycity_madrid.ui.CategoriesListScreen
 import com.example.pmdm_p4_mycity_madrid.ui.CityViewModel
+import com.example.pmdm_p4_mycity_madrid.ui.PlacesListScreen
 
 //TODO REVISAR Y COMENTAR
 /**
@@ -43,9 +47,13 @@ fun MyCityAppBar(
     modifier: Modifier = Modifier
 ) {
     TopAppBar(
-        title = { Text(stringResource(R.string.city_break)) },
+        title = {
+            Text(
+                text = stringResource(R.string.city_break)
+            )
+        },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = colorResource(R.color.my_purple_normal)
+            containerColor = colorResource(R.color.my_dark_purple)
         ),
         modifier = modifier,
         navigationIcon = {
@@ -64,11 +72,12 @@ fun MyCityAppBar(
 /**
  * Función para navegar por las páginas de la aplicación.
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3WindowSizeClassApi::class)
 @Composable
 fun MyCityApp(
     viewModel: CityViewModel = viewModel(),
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    windowSize: WindowWidthSizeClass
 ) {
     Scaffold(
         topBar = {
@@ -78,8 +87,6 @@ fun MyCityApp(
             )
         }
     ) { innerPadding ->
-        //val uiState by viewModel.uiState.collectAsState()
-
         NavHost(
             navController = navController,
             startDestination = MyCityScreen.CategoriesList.name,
@@ -88,10 +95,20 @@ fun MyCityApp(
             composable(route = MyCityScreen.CategoriesList.name) {
                 CategoriesListScreen(
                     categories = CategoriesDataSource.getCategories(),
-                    // TODO CONTINUAR HACIENDO LLAMADA A CLICK DEL ITEM SUBCATEGORIA
+                    onSubcategorySelected = {
+                        viewModel.updateCurrentSubcategory(it)
+                        navController.navigate(MyCityScreen.PlacesList.name)
+                    }
                 )
             }
 
+            composable(route = MyCityScreen.PlacesList.name) {
+                PlacesListScreen(
+                    viewModel = viewModel,
+                    windowSize = windowSize,
+                    onBackPressed = {}  // TODO PROGRAMAR BACK PRESSED
+                )
+            }
         }
     }
 }

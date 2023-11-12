@@ -66,12 +66,10 @@ import com.example.pmdm_p4_mycity_madrid.utils.PlacesContentType
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlacesListScreen(
+    viewModel: CityViewModel = viewModel(),
     windowSize: WindowWidthSizeClass,
     onBackPressed: () -> Unit,
 ){
-    // Creamos una instancia del ViewModel para manejar datos relacionados con la interfaz de usuario
-    val viewModel: CityViewModel = viewModel()
-
     // Observamos el estado de la interfaz de usuario actualizando constantemente uiState
     val uiState by viewModel.uiState.collectAsState()
 
@@ -99,7 +97,7 @@ fun PlacesListScreen(
     ) { innerPadding ->
         if (contentType == PlacesContentType.ListAndDetail) {
             PlacesListAndDetail(
-                places = uiState.placesList,
+                places = uiState.currentSubcategory.places,
                 selectedPlace = uiState.currentPlace,
                 onClick = {
                     viewModel.updateCurrentPlace(it)
@@ -111,7 +109,7 @@ fun PlacesListScreen(
         } else {
             if (uiState.isShowingListPage) {
                 PlacesList(
-                    places = uiState.placesList,
+                    places = uiState.currentSubcategory.places,
                     onClick = {
                         viewModel.updateCurrentPlace(it)
                         viewModel.navigateToDetailPlacePage()
@@ -164,7 +162,7 @@ private fun PlacesListBar(
             }
             },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = colorResource(R.color.my_normal_purple)
+            containerColor = colorResource(R.color.my_dark_purple)
         ),
         modifier = modifier,
     )
@@ -298,7 +296,7 @@ private fun PlaceDetail(
             Text(
                 text = stringResource(selectedPlace.nameResourceId),
                 style = MaterialTheme.typography.headlineLarge,
-                fontSize = 40.sp,
+                fontSize = 30.sp,
                 color = colorResource(id = R.color.my_dark_gray),
                 fontStyle = FontStyle.Italic,
                 modifier = Modifier

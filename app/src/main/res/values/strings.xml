@@ -63,7 +63,7 @@
     <string name="desc_cafe7">Café‑bar chic, lleno de plantas, que emplea productos orgánicos y sirve tanto zumos naturales como platos veganos.</string>
 
     <!-- Recursos de restaurantes -->
-    <string name="nom_restaurante1">Restaurante Arrabal</string>
+    <string name="nom_restaurante1">Arrabal</string>
     <string name="dir_restaurante1">Pl. Mayor, 23, 28012 Madrid</string>
     <string name="desc_restaurante1">Comida tradicional en un restaurante histórico y refinado con toques modernos y antiguos.</string>
 
@@ -71,11 +71,11 @@
     <string name="dir_restaurante2">C. de la Amnistía, 4, 28013 Madrid</string>
     <string name="desc_restaurante2">Platos clásicos de la cocina francesa, como fuagrás, pato y mollejas, en un restaurante con paredes de ladrillo e iluminación tenue.</string>
 
-    <string name="nom_restaurante3">Restaurante Gloria Bendita Madrid</string>
+    <string name="nom_restaurante3">Gloria Bendita Madrid</string>
     <string name="dir_restaurante3">C. de Santiago, 3, 28013 Madrid</string>
     <string name="desc_restaurante3">Restaurante acogedor, de ambiente desenfadado y original, que ofrece una carta con platos tradicionales y creativos.</string>
 
-    <string name="nom_restaurante4">Restaurante El Tormo</string>
+    <string name="nom_restaurante4">El Tormo</string>
     <string name="dir_restaurante4">Tr.ª de las Vistillas, 13, 28005 Madrid</string>
     <string name="desc_restaurante4">Menú cambiante de platos castellanos contundentes y vinos regionales en un restaurante emblemático regentado por una familia.</string>
 
@@ -92,7 +92,7 @@
     <string name="desc_restaurante7">Platos refinados de la cocina mediterránea en una evocadora bodega del siglo XVII con mesas en hornacinas de piedra.</string>
 
     <!-- Recursos de centros comerciales -->
-    <string name="nom_comercial1">Centro Comercial Príncipe Pío</string>
+    <string name="nom_comercial1">Príncipe Pío</string>
     <string name="dir_comercial1">P.º de la Florida, 2, 28008 Madrid</string>
     <string name="desc_comercial1">Centro comercial elegante con techo acristalado, una amplia variedad de tiendas, restaurantes y cine.</string>
 
@@ -100,19 +100,19 @@
     <string name="dir_comercial2">C. de Preciados, 3, 10, 28013 Madrid</string>
     <string name="desc_comercial2">Centro comercial con las últimas novedades en moda, electrónica, informática, deportes y mucho más de las mejores marcas al mejor precio.</string>
 
-    <string name="nom_comercial3">Centro Comercial La Vaguada</string>
+    <string name="nom_comercial3">La Vaguada</string>
     <string name="dir_comercial3">Av. de Monforte de Lemos, 36, 28029 Madrid</string>
     <string name="desc_comercial3">Más de 230 tiendas y restaurantes para disfrutar de las mejores compras y de tu ocio.</string>
 
-    <string name="nom_comercial4">Centro Comercial Islazul</string>
+    <string name="nom_comercial4">Islazul</string>
     <string name="dir_comercial4">C. de la Calderilla, 1, 28054 Madrid</string>
     <string name="desc_comercial4">Complejo vanguardista con plaza central y plantas tropicales que reúne cine, tiendas, bares y restaurantes.</string>
 
-    <string name="nom_comercial5">Centro Comercial Plenilunio</string>
+    <string name="nom_comercial5">Plenilunio</string>
     <string name="dir_comercial5">C. de Aracne, s/n, 28022 Madrid</string>
     <string name="desc_comercial5">Vasto complejo vanguardista con plaza central con supermercados, cines, tiendas de moda y tecnología y bares.</string>
 
-    <string name="nom_comercial6">Centro Comercial Arturo Soria Plaza</string>
+    <string name="nom_comercial6">Arturo Soria Plaza</string>
     <string name="dir_comercial6">C. de Arturo Soria, 126, 28043 Madrid</string>
     <string name="desc_comercial6">Edificio de ladrillo de aspecto industrial que acoge tiendas de moda, alimentación, servicios y restaurantes.</string>
 
@@ -129,7 +129,7 @@
     <string name="dir_cine3">C.Gran Vía, 41, 28013 Madrid</string>
     <string name="desc_cine3">Dispone de tres salas donde podrás visualizar los últimos estrenos, con espacios interiores reservados para otras reuniones.</string>
 
-    <string name="nom_cine4">Cine Estudio del Circulo de Bellas Artes</string>
+    <string name="nom_cine4">Cine Estudio</string>
     <string name="dir_cine4">C. del Marqués de Casa Riera, 4, 28014 Madrid</string>
     <string name="desc_cine4">Una de las últimas salas con arquitectura tradicional de cine, un espacio único en Madrid para los amantes del séptimo arte.</string>
 
@@ -142,11 +142,11 @@
     <string name="dir_parque1">P.º de Moret, 2, 28008 Madrid</string>
     <string name="desc_parque1">Gran parque urbano paisajístico del siglo XX, con rutas que serpentean alrededor de coníferas y cedros.</string>
 
-    <string name="nom_parque2">Parque Madrid Río</string>
+    <string name="nom_parque2">Madrid Río</string>
     <string name="dir_parque2">P.º de la Ermita del Santo, 14, 16, 28011 Madrid</string>
     <string name="desc_parque2">Moderno espacio verde paralelo al río Manzanares, con eventos culturales y pistas deportivas.</string>
 
-    <string name="nom_parque3">Parque de El Retiro</string>
+    <string name="nom_parque3">El Retiro</string>
     <string name="dir_parque3">28009 Madrid</string>
     <string name="desc_parque3">Amplio parque del siglo XIX con lago para barcas y rosaleda, además de diversas fuentes y estatuas.</string>
 

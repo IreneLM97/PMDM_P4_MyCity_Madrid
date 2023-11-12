@@ -7,6 +7,7 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -56,6 +57,7 @@ import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 @Composable
 fun CategoriesListScreen(
     categories: List<Category>,
+    onSubcategorySelected: (Subcategory) -> Unit,
     modifier: Modifier = Modifier
 ){
     LazyColumn(
@@ -70,7 +72,8 @@ fun CategoriesListScreen(
         // Creamos las categorías
         items(categories) { category ->
             CategoryItem(
-                category = category
+                category = category,
+                onSubcategorySelected = onSubcategorySelected
             )
         }
     }
@@ -130,7 +133,8 @@ private fun Line() {
  */
 @Composable
 private fun CategoryItem(
-    category: Category
+    category: Category,
+    onSubcategorySelected: (Subcategory) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
 
@@ -146,6 +150,7 @@ private fun CategoryItem(
                         stiffness = Spring.StiffnessMedium
                     )
                 )
+                .background(colorResource(id = R.color.my_normal_purple))
         ) {
             Row(
                 modifier = Modifier
@@ -159,11 +164,16 @@ private fun CategoryItem(
                 Spacer(Modifier.weight(1f))
                 CategoryItemButton(
                     expanded = expanded,
-                    onClick = { expanded = !expanded },
+                    onClick = {
+                        expanded = !expanded
+                    },
                 )
             }
             if (expanded) {
-                SubcategoriesList(category.subcategories)
+                SubcategoriesList(
+                    category.subcategories,
+                    onSubcategorySelected = onSubcategorySelected
+                )
             }
         }
     }
@@ -224,7 +234,8 @@ private fun CategoryItemButton(
  */
 @Composable
 private fun SubcategoriesList(
-    subcategories: List<Subcategory>
+    subcategories: List<Subcategory>,
+    onSubcategorySelected: (Subcategory) -> Unit
 ) {
     Column (
         modifier = Modifier
@@ -254,6 +265,9 @@ private fun SubcategoriesList(
                     fontSize = 25.sp,
                     modifier = Modifier
                         .padding(dimensionResource(R.dimen.padding_small))
+                        .clickable {
+                            onSubcategorySelected(subcategory)
+                        }
                 )
             }
             Spacer(Modifier.height(5.dp))
@@ -269,6 +283,7 @@ private fun SubcategoriesList(
 fun CategoriesListScreenPreview(){
     CategoriesListScreen(
         categories = CategoriesDataSource.getCategories(),
+        onSubcategorySelected = {},
         modifier = Modifier
             .fillMaxSize()
             .padding(dimensionResource(R.dimen.padding_medium))
@@ -279,7 +294,8 @@ fun CategoriesListScreenPreview(){
 @Composable
 fun SubcategoriesListScreenPreview1(){
     SubcategoriesList(
-        subcategories = CategoriesDataSource.getCategories()[0].subcategories
+        subcategories = CategoriesDataSource.getCategories()[0].subcategories,
+        onSubcategorySelected = {}
     )
 }
 
@@ -287,7 +303,8 @@ fun SubcategoriesListScreenPreview1(){
 @Composable
 fun SubcategoriesListScreenPreview2(){
     SubcategoriesList(
-        subcategories = CategoriesDataSource.getCategories()[1].subcategories
+        subcategories = CategoriesDataSource.getCategories()[1].subcategories,
+        onSubcategorySelected = {}
     )
 }
 
@@ -295,7 +312,8 @@ fun SubcategoriesListScreenPreview2(){
 @Composable
 fun SubcategoriesListScreenPreview3(){
     SubcategoriesList(
-        subcategories = CategoriesDataSource.getCategories()[2].subcategories
+        subcategories = CategoriesDataSource.getCategories()[2].subcategories,
+        onSubcategorySelected = {}
     )
 }
 
@@ -303,6 +321,7 @@ fun SubcategoriesListScreenPreview3(){
 @Composable
 fun SubcategoriesListScreenPreview4(){
     SubcategoriesList(
-        subcategories = CategoriesDataSource.getCategories()[3].subcategories
+        subcategories = CategoriesDataSource.getCategories()[3].subcategories,
+        onSubcategorySelected = {}
     )
 }
