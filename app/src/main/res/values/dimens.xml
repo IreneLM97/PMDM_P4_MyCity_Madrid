@@ -21,6 +21,7 @@
     <dimen name="thickness_divider">1dp</dimen>
 
     <dimen name="image_category_size">73dp</dimen>
+    <dimen name="image_subcategory_size">50dp</dimen>
 
     <dimen name="card_corner_radius">20dp</dimen>
     <dimen name="card_image_height">128dp</dimen>

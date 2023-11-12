@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="my_purple_light">#A298B6</color>
+    <color name="my_purple_normal">#A298B6</color>
+    <color name="my_purple_light">#e8e6ee</color>
 </resources>

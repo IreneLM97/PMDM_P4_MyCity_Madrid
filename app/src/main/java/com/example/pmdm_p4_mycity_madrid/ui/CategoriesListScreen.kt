@@ -10,7 +10,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -49,7 +48,7 @@ import com.example.pmdm_p4_mycity_madrid.R
 import com.example.pmdm_p4_mycity_madrid.data.CategoriesDataSource
 import com.example.pmdm_p4_mycity_madrid.model.Category
 import com.example.pmdm_p4_mycity_madrid.model.Subcategory
-
+// TODO COMENTAR TODO BIEN
 /**
  * Define la estructura que tendrá la pantalla que lista las categorías.
  */
@@ -58,17 +57,21 @@ fun CategoriesListScreen(
     categories: List<Category>,
     modifier: Modifier = Modifier
 ){
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.SpaceBetween
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
+        modifier = modifier
+            .fillMaxSize(),
     ) {
-        // Creamos la cabecera de la página
-        Header()
-
-        // Creamos las listas desplegables
-        CategoriesList(
-            categories
-        )
+        // Creamos una cabecera con la silueta de la ciudad
+        item {
+            CityHeader()
+        }
+        // Creamos las categorías
+        items(categories) { category ->
+            CategoryItem(
+                category = category
+            )
+        }
     }
 }
 
@@ -76,16 +79,17 @@ fun CategoriesListScreen(
  * Define la estructura que tendrá el inicio de la página con la silueta y el nombre de la ciudad.
  */
 @Composable
-private fun Header() {
+private fun CityHeader() {
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
     ) {
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
         Text(
             text = stringResource(R.string.madrid),
-            fontSize = 50.sp,
+            fontSize = 40.sp,
             style = MaterialTheme.typography.headlineSmall
         )
         Line()
@@ -102,28 +106,6 @@ private fun Header() {
                 .height(200.dp)
         )
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
-    }
-}
-
-/**
- * Define la estructura que tendrá la lista de desplegables de categorías principales.
- */
-@Composable
-private fun CategoriesList(
-    categories: List<Category>,
-    modifier: Modifier = Modifier,
-    contentPadding: PaddingValues = PaddingValues(0.dp),
-) {
-    LazyColumn(
-        contentPadding = contentPadding,
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
-        modifier = modifier.padding(top = dimensionResource(R.dimen.padding_medium)),
-    ) {
-        items(categories) { category ->
-            CategoryItem(
-                category = category
-            )
-        }
     }
 }
 
@@ -242,15 +224,33 @@ private fun SubcategoriesList(
 ) {
     Column (
         modifier = Modifier
-            .background(colorResource(id = R.color.black))
+            .background(colorResource(R.color.my_purple_light))
     ) {
         subcategories.forEach { subcategory ->
-            Text(
-                text = stringResource(subcategory.nameResourceId),
-                fontSize = 25.sp,
+            Row (
                 modifier = Modifier
-                    .padding(dimensionResource(R.dimen.padding_small))
-            )
+                    .padding(start = 16.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    modifier = Modifier
+                        .size(dimensionResource(R.dimen.image_subcategory_size))
+                        .clip(MaterialTheme.shapes.small)
+                        .padding(5.dp),
+                    contentScale = ContentScale.Crop,
+                    painter = painterResource(subcategory.imageResourceId),
+                    contentDescription = stringResource(R.string.category_icon)
+                )
+                Text(
+                    text = stringResource(subcategory.nameResourceId),
+                    fontSize = 25.sp,
+                    modifier = Modifier
+                        .padding(dimensionResource(R.dimen.padding_small))
+                )
+            }
+            Spacer(Modifier.height(5.dp))
         }
     }
 }
@@ -260,11 +260,43 @@ private fun SubcategoriesList(
  */
 @Preview
 @Composable
-fun ListCategoryScreenPreview(){
+fun CategoriesListScreenPreview(){
     CategoriesListScreen(
         categories = CategoriesDataSource.getCategories(),
         modifier = Modifier
             .fillMaxSize()
             .padding(dimensionResource(R.dimen.padding_medium))
+    )
+}
+
+@Preview
+@Composable
+fun SubcategoriesListScreenPreview1(){
+    SubcategoriesList(
+        subcategories = CategoriesDataSource.getCategories()[0].subcategories
+    )
+}
+
+@Preview
+@Composable
+fun SubcategoriesListScreenPreview2(){
+    SubcategoriesList(
+        subcategories = CategoriesDataSource.getCategories()[1].subcategories
+    )
+}
+
+@Preview
+@Composable
+fun SubcategoriesListScreenPreview3(){
+    SubcategoriesList(
+        subcategories = CategoriesDataSource.getCategories()[2].subcategories
+    )
+}
+
+@Preview
+@Composable
+fun SubcategoriesListScreenPreview4(){
+    SubcategoriesList(
+        subcategories = CategoriesDataSource.getCategories()[3].subcategories
     )
 }

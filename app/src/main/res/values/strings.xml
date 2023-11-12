@@ -8,10 +8,11 @@
     <string name="category_icon">Icono de la categoría</string>
     <string name="ubication_icon">Icono de ubicación</string>
     <string name="description_icon">Icono de descripción</string>
+    <string name="subcategory_image">Imagen de la subcategoría</string>
     <string name="place_image">Imagen del lugar</string>
 
     <string name="expand_button_content_description">Ver más sobre la categoría</string>
-    <string name="back_button">botón volver</string>
+    <string name="back_button">Icono de volver atrás</string>
 
     <!-- Recursos de categorías -->
     <string name="hosteleria">Hosteleria</string>
