@@ -55,7 +55,7 @@ import com.example.pmdm_p4_mycity_madrid.data.CategoriesDataSource
 import com.example.pmdm_p4_mycity_madrid.model.Category
 import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 
-// TODO COMENTAR TODO BIEN
+// TODO COMENTAR LAS FUNCIONES Y COMPROBAR
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoriesListScreen(

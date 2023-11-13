@@ -15,6 +15,7 @@ data class CityUiState(
     val isShowingListPage: Boolean = true
 )
 
+/** Inicializamos el estado */
 val initialCategory = CategoriesDataSource.getCategories()[0]
 val initialState = CityUiState(
     currentSubcategory = initialCategory.subcategories[0],

@@ -14,7 +14,7 @@ import com.example.pmdm_p4_mycity_madrid.ui.CategoriesListScreen
 import com.example.pmdm_p4_mycity_madrid.ui.CityViewModel
 import com.example.pmdm_p4_mycity_madrid.ui.PlacesListScreen
 
-//TODO REVISAR Y COMENTAR
+//TODO REVISAR Y COMENTAR LAS FUNCIONES
 /**
  * Representan las distintas páginas de la aplicación.
  */

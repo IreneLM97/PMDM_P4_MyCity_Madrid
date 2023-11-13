@@ -62,7 +62,7 @@ import com.example.pmdm_p4_mycity_madrid.model.Place
 import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 import com.example.pmdm_p4_mycity_madrid.utils.PlacesContentType
 
-// TODO COMENTAR Y REVISAR
+// TODO COMENTAR Y REVISAR FUNCIONES
 // TODO AÑADIR OPCIÓN DE COMPARTIR LUGAR A OTRA APP
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

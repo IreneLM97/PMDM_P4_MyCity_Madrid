@@ -8,7 +8,7 @@ import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-// TODO REVISAR Y COMENTAR
+// TODO REVISAR Y COMENTAR LAS FUNCIONES
 class CityViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(initialState)
