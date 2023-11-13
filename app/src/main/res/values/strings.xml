@@ -13,6 +13,10 @@
 
     <string name="expand_button_content_description">Ver más sobre la categoría</string>
     <string name="back_button">Icono de volver atrás</string>
+    <string name="send_button">Compartir con otra aplicación</string>
+
+    <string name="place_summary">Nombre: %1$s \nDirección: %2$s \nDescripción: %3$s</string>
+    <string name="send_place">Enviar información del lugar</string>
 
     <!-- Recursos de categorías -->
     <string name="hosteleria">Hosteleria</string>
@@ -239,7 +243,7 @@
     <string name="desc_apartamento2">Edificio histórico en el centro de Madrid con 5 apartamentos y 15 habitaciones privadas disponibles tanto como alojamiento turístico como para celebraciones.</string>
 
     <string name="nom_apartamento3">Apartamentos Juan Bravo</string>
-    <string name="dir_apartamento3">C. de Juan Bravo, 58-60, 28006 Madrid</string>
+    <string name="dir_apartamento3">C. de Juan Bravo, 58_60, 28006 Madrid</string>
     <string name="desc_apartamento3">Apartotel de estilo desenfadado con estudios y apartamentos sencillos, y piscina exterior con solárium.</string>
 
     <string name="nom_apartamento4">Madrid rental flats</string>

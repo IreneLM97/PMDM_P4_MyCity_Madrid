@@ -25,6 +25,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -70,6 +72,7 @@ fun PlacesListScreen(
     viewModel: CityViewModel = viewModel(),
     windowSize: WindowWidthSizeClass,
     onBackPressed: () -> Unit,
+    onSendButtonClicked: (String) -> Unit = {}
 ){
     // Observamos el estado de la interfaz de usuario actualizando constantemente uiState
     val cityUiState by viewModel.uiState.collectAsState()
@@ -110,6 +113,7 @@ fun PlacesListScreen(
                 onClick = {
                     viewModel.updateCurrentPlace(it)
                 },
+                onSendButtonClicked = onSendButtonClicked,
                 contentPadding = innerPadding,
                 contentType = contentType,
                 modifier = Modifier.fillMaxWidth()
@@ -129,6 +133,7 @@ fun PlacesListScreen(
                 )
             } else {
                 PlaceDetail(
+                    onSendButtonClicked = onSendButtonClicked,
                     selectedPlace = cityUiState.currentPlace,
                     contentPadding = innerPadding,
                 )
@@ -291,11 +296,20 @@ private fun PlaceItemImage(
 @Composable
 private fun PlaceDetail(
     selectedPlace: Place,
-    contentPadding: PaddingValues,
-    modifier: Modifier = Modifier
+    onSendButtonClicked: (String) -> Unit,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues
 ) {
     // Estado del scroll
     val scrollState = rememberScrollState()
+    
+    // Resumen de la información del lugar
+    val placeSummary = stringResource(
+        R.string.place_summary,
+        stringResource(id = selectedPlace.nameResourceId),
+        stringResource(selectedPlace.dirResourceId),
+        stringResource(selectedPlace.descResourceId)
+    )
 
     // Estructura de la información detallada del lugar
     Box(
@@ -361,6 +375,25 @@ private fun PlaceDetail(
                     text = stringResource(selectedPlace.descResourceId)
                 )
             }
+
+            Spacer(Modifier.height(5.dp))
+
+            // Botón para enviar a otra aplicación
+            Row(
+                modifier = Modifier
+                    .padding(dimensionResource(R.dimen.padding_big))
+            ) {
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    onClick = {
+                        onSendButtonClicked(placeSummary)
+                    },
+                    colors = ButtonDefaults.buttonColors(colorResource(id = R.color.my_darkest_purple)),
+                ) {
+                    Text(stringResource(R.string.send_button))
+                }
+            }
         }
     }
 }
@@ -425,6 +458,7 @@ private fun PlacesListAndDetail(
     places: List<Place>,
     selectedPlace: Place,
     onClick: (Place) -> Unit,
+    onSendButtonClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
     contentType: PlacesContentType = PlacesContentType.ListOnly
@@ -443,6 +477,7 @@ private fun PlacesListAndDetail(
                 .padding(horizontal = dimensionResource(R.dimen.padding_medium))
         )
         PlaceDetail(
+            onSendButtonClicked = onSendButtonClicked,
             selectedPlace = selectedPlace,
             modifier = Modifier.weight(3f),
             contentPadding = contentPadding
@@ -483,7 +518,8 @@ fun PlacesListAndDetailsPreview() {
         cityUiState = cityUiState,
         places = PlacesDataSource.getCafeterias(),
         selectedPlace = PlacesDataSource.getCafeterias()[0],
-        onClick = {}
+        onClick = {},
+        onSendButtonClicked = {}
     )
 }
 
