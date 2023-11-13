@@ -1,7 +1,6 @@
-package com.example.pmdm_p4_mycity_madrid.data
+package com.example.pmdm_p4_mycity_madrid.model
 
-import com.example.pmdm_p4_mycity_madrid.model.Place
-import com.example.pmdm_p4_mycity_madrid.model.Subcategory
+import com.example.pmdm_p4_mycity_madrid.data.CategoriesDataSource
 
 /**
  * Representa el estado de la interfaz de usuario para la visualización de lugares recomendados de la ciudad.

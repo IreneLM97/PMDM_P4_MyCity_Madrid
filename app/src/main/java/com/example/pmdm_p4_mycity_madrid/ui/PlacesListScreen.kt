@@ -57,6 +57,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pmdm_p4_mycity_madrid.R
 import com.example.pmdm_p4_mycity_madrid.data.PlacesDataSource
+import com.example.pmdm_p4_mycity_madrid.model.CityUiState
 import com.example.pmdm_p4_mycity_madrid.model.Place
 import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 import com.example.pmdm_p4_mycity_madrid.utils.PlacesContentType
@@ -71,7 +72,7 @@ fun PlacesListScreen(
     onBackPressed: () -> Unit,
 ){
     // Observamos el estado de la interfaz de usuario actualizando constantemente uiState
-    val uiState by viewModel.uiState.collectAsState()
+    val cityUiState by viewModel.uiState.collectAsState()
 
     // Determinamos el tipo de contenido en función del tamaño de la ventana
     val contentType = when (windowSize) {
@@ -87,44 +88,48 @@ fun PlacesListScreen(
     Scaffold(
         topBar = {
             PlacesListBar(
-                isShowingListPage = uiState.isShowingListPage,
+                isShowingListPage = cityUiState.isShowingListPage,
                 onBackButtonClick = {
-                    if (contentType == PlacesContentType.ListOnly && !uiState.isShowingListPage) {
+                    if (contentType == PlacesContentType.ListOnly && !cityUiState.isShowingListPage) {
                         viewModel.navigateToListPlacesPage()
                     } else {
                         onBackPressed()
                     }
                 },
                 windowSize = windowSize,
-                currentSubcategory = uiState.currentSubcategory,
-                currentPlace = uiState.currentPlace
+                currentSubcategory = cityUiState.currentSubcategory,
+                currentPlace = cityUiState.currentPlace
             )
         }
     ) { innerPadding ->
         if (contentType == PlacesContentType.ListAndDetail) {
             PlacesListAndDetail(
-                places = uiState.currentSubcategory.places,
-                selectedPlace = uiState.currentPlace,
+                cityUiState = cityUiState,
+                places = cityUiState.currentSubcategory.places,
+                selectedPlace = cityUiState.currentPlace,
                 onClick = {
                     viewModel.updateCurrentPlace(it)
                 },
                 contentPadding = innerPadding,
+                contentType = contentType,
                 modifier = Modifier.fillMaxWidth()
             )
         } else {
-            if (uiState.isShowingListPage) {
+            if (cityUiState.isShowingListPage) {
                 PlacesList(
-                    places = uiState.currentSubcategory.places,
+                    cityUiState = cityUiState,
+                    places = cityUiState.currentSubcategory.places,
                     onClick = {
                         viewModel.updateCurrentPlace(it)
                         viewModel.navigateToDetailPlacePage()
                     },
-                    modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_medium)),
                     contentPadding = innerPadding,
+                    contentType = contentType,
+                    modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_medium)),
                 )
             } else {
                 PlaceDetail(
-                    selectedPlace = uiState.currentPlace,
+                    selectedPlace = cityUiState.currentPlace,
                     contentPadding = innerPadding,
                 )
             }
@@ -175,10 +180,12 @@ private fun PlacesListBar(
 
 @Composable
 private fun PlacesList(
+    cityUiState: CityUiState,
     places: List<Place>,
     onClick: (Place) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
+    contentType: PlacesContentType = PlacesContentType.ListOnly,
 ) {
     LazyColumn(
         contentPadding = contentPadding,
@@ -189,8 +196,10 @@ private fun PlacesList(
     ) {
         items(places, key = { place -> place.id }) { place ->
             PlaceItem(
+                cityUiState = cityUiState,
                 place = place,
-                onItemClick = onClick
+                onItemClick = onClick,
+                contentType = contentType
             )
         }
     }
@@ -199,10 +208,16 @@ private fun PlacesList(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PlaceItem(
+    cityUiState: CityUiState,
     place: Place,
     onItemClick: (Place) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    contentType: PlacesContentType = PlacesContentType.ListOnly
 ) {
+    // Comprobamos si está seleccionado el item y estamos en vista ListAndDetail
+    // para personalizar el fondo del item cuando esté seleccionado
+    val isSelected = cityUiState.currentPlace.id == place.id && contentType == PlacesContentType.ListAndDetail
+
     Card(
         elevation = CardDefaults.cardElevation(),
         modifier = modifier,
@@ -212,10 +227,17 @@ private fun PlaceItem(
         }
     ) {
         Row(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
-                .background(colorResource(id = R.color.my_light_purple))
                 .size(dimensionResource(R.dimen.card_image_height))
+                .background(
+                    // Personalizamos color de fondo en función de si está seleccionado o no
+                    color = if (isSelected) {
+                        colorResource(id = R.color.my_normal_purple)
+                    } else {
+                        colorResource(id = R.color.my_light_purple)
+                    }
+                )
         ) {
             PlaceItemImage(
                 place = place,
@@ -399,19 +421,23 @@ private fun IconWithText(
 
 @Composable
 private fun PlacesListAndDetail(
+    cityUiState: CityUiState,
     places: List<Place>,
     selectedPlace: Place,
     onClick: (Place) -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
+    contentType: PlacesContentType = PlacesContentType.ListOnly
 ) {
     Row(
         modifier = modifier
     ) {
         PlacesList(
+            cityUiState = cityUiState,
             places = places,
             onClick = onClick,
             contentPadding = contentPadding,
+            contentType = contentType,
             modifier = Modifier
                 .weight(2f)
                 .padding(horizontal = dimensionResource(R.dimen.padding_medium))
@@ -427,7 +453,10 @@ private fun PlacesListAndDetail(
 @Preview
 @Composable
 fun PlaceItemPreview() {
+    val viewModel: CityViewModel = viewModel()
+    val cityUiState by viewModel.uiState.collectAsState()
     PlaceItem(
+        cityUiState = cityUiState,
         place = PlacesDataSource.getCafeterias()[5],
         onItemClick = {}
     )
@@ -436,16 +465,22 @@ fun PlaceItemPreview() {
 @Preview
 @Composable
 fun PlacesListPreview() {
+    val viewModel: CityViewModel = viewModel()
+    val cityUiState by viewModel.uiState.collectAsState()
     PlacesList(
+        cityUiState = cityUiState,
         places = PlacesDataSource.getCafeterias(),
-        onClick = {}
+        onClick = {},
     )
 }
 
 @Preview(device = Devices.TABLET)
 @Composable
 fun PlacesListAndDetailsPreview() {
+    val viewModel: CityViewModel = viewModel()
+    val cityUiState by viewModel.uiState.collectAsState()
     PlacesListAndDetail(
+        cityUiState = cityUiState,
         places = PlacesDataSource.getCafeterias(),
         selectedPlace = PlacesDataSource.getCafeterias()[0],
         onClick = {}

@@ -1,8 +1,8 @@
 package com.example.pmdm_p4_mycity_madrid.ui
 
 import androidx.lifecycle.ViewModel
-import com.example.pmdm_p4_mycity_madrid.data.CityUiState
-import com.example.pmdm_p4_mycity_madrid.data.initialState
+import com.example.pmdm_p4_mycity_madrid.model.CityUiState
+import com.example.pmdm_p4_mycity_madrid.model.initialState
 import com.example.pmdm_p4_mycity_madrid.model.Place
 import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 import kotlinx.coroutines.flow.MutableStateFlow

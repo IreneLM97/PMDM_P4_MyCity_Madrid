@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PMDM_P4_MyCity_MadridTheme {
-                // A surface container using the 'background' color from the theme
+                // Contenedor de la aplicación
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
