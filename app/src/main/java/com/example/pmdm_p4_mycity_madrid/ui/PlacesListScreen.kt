@@ -64,8 +64,14 @@ import com.example.pmdm_p4_mycity_madrid.model.Place
 import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 import com.example.pmdm_p4_mycity_madrid.utils.PlacesContentType
 
-// TODO COMENTAR Y REVISAR FUNCIONES
-// TODO AÑADIR OPCIÓN DE COMPARTIR LUGAR A OTRA APP
+/**
+ * Función que representa la pantalla principal de la lista de lugares.
+ *
+ * @param viewModel ViewModel que gestiona el estado de la interfaz de usuario
+ * @param windowSize clasificación del tamaño de la ventana
+ * @param onBackPressed lambda que se invoca cuando se pulsa el botón de retroceso
+ * @param onSendButtonClicked lambda que se invoca cuando se hace click en el botón de enviar
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlacesListScreen(
@@ -90,6 +96,7 @@ fun PlacesListScreen(
 
     Scaffold(
         topBar = {
+            // Barra superior personalizada
             PlacesListBar(
                 isShowingListPage = cityUiState.isShowingListPage,
                 onBackButtonClick = {
@@ -105,7 +112,9 @@ fun PlacesListScreen(
             )
         }
     ) { innerPadding ->
-        if (contentType == PlacesContentType.ListAndDetail) {
+        // Contenido principal de la pantalla en función del tamaño de la pantalla
+        if (contentType == PlacesContentType.ListAndDetail) { // tamaño pantalla expanded
+            // Mostramos lista y detalles
             PlacesListAndDetail(
                 cityUiState = cityUiState,
                 places = cityUiState.currentSubcategory.places,
@@ -118,8 +127,9 @@ fun PlacesListScreen(
                 contentType = contentType,
                 modifier = Modifier.fillMaxWidth()
             )
-        } else {
+        } else { // tamaño pantalla standard
             if (cityUiState.isShowingListPage) {
+                // Mostramos lista de lugares
                 PlacesList(
                     cityUiState = cityUiState,
                     places = cityUiState.currentSubcategory.places,
@@ -132,6 +142,7 @@ fun PlacesListScreen(
                     modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_medium)),
                 )
             } else {
+                // Mostramos detalles de un lugar específico
                 PlaceDetail(
                     onSendButtonClicked = onSendButtonClicked,
                     selectedPlace = cityUiState.currentPlace,
@@ -142,6 +153,16 @@ fun PlacesListScreen(
     }
 }
 
+/**
+ * Función que representa la barra superior de la pantalla.
+ *
+ * @param onBackButtonClick lambda que se invoca cuando se pulsa el botón de retroceso
+ * @param isShowingListPage indica si se está mostrando la lista de lugares
+ * @param windowSize clasificación del tamaño de la ventana
+ * @param currentSubcategory subcategoría actual seleccionada
+ * @param currentPlace lugar actual seleccionado
+ * @param modifier modificador opcional para aplicar al diseño
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PlacesListBar(
@@ -152,9 +173,12 @@ private fun PlacesListBar(
     currentPlace: Place,
     modifier: Modifier = Modifier
 ) {
+    // Variable que determina si se está mostrando la página de detalles del lugar
     val isShowingDetailPage = windowSize != WindowWidthSizeClass.Expanded && !isShowingListPage
 
+    // Barra superior personalizada
     TopAppBar(
+        // Título de la barra en función de que pantalla se esté mostrando
         title = {
             Text(
                 text =
@@ -166,6 +190,7 @@ private fun PlacesListBar(
                 fontWeight = FontWeight.Bold
             )
         },
+        // Icono de navegación que corresponde a una flecha hacia atrás
         navigationIcon = {
             IconButton(
                 onClick = onBackButtonClick
@@ -176,6 +201,7 @@ private fun PlacesListBar(
                 )
             }
             },
+        // Color personalizado para la barra superior
         colors = TopAppBarDefaults.mediumTopAppBarColors(
             containerColor = colorResource(R.color.my_dark_purple)
         ),
@@ -183,6 +209,16 @@ private fun PlacesListBar(
     )
 }
 
+/**
+ * Función que representa la lista de lugares.
+ *
+ * @param cityUiState estado de la interfaz de usuario
+ * @param places lista de lugares a mostrar
+ * @param onClick lambda que se invoca cuando se hace click en un lugar
+ * @param modifier modificador opcional para aplicar al diseño de la lista
+ * @param contentPadding espaciado alrededor del contenido de la lista
+ * @param contentType indica tipo de contenido de la pantalla (ListOnly o ListAndDetail)
+ */
 @Composable
 private fun PlacesList(
     cityUiState: CityUiState,
@@ -192,6 +228,7 @@ private fun PlacesList(
     contentPadding: PaddingValues = PaddingValues(0.dp),
     contentType: PlacesContentType = PlacesContentType.ListOnly,
 ) {
+    // Muestra la lista de lugares
     LazyColumn(
         contentPadding = contentPadding,
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
@@ -200,6 +237,7 @@ private fun PlacesList(
             .padding(bottom = dimensionResource(R.dimen.padding_small)),
     ) {
         items(places, key = { place -> place.id }) { place ->
+            // Representa un elemento de la lista
             PlaceItem(
                 cityUiState = cityUiState,
                 place = place,
@@ -210,6 +248,15 @@ private fun PlacesList(
     }
 }
 
+/**
+ * Función que representa un elemento individual en la lista de lugares.
+ *
+ * @param cityUiState estado de la interfaz de usuario
+ * @param place lugar que se está representando
+ * @param onItemClick lambda que se invoca cuando se hace click en un lugar
+ * @param modifier modificador opcional para aplicar al diseño del elemento
+ * @param contentType indica tipo de contenido de la pantalla (ListOnly o ListAndDetail)
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun PlaceItem(
@@ -223,6 +270,7 @@ private fun PlaceItem(
     // para personalizar el fondo del item cuando esté seleccionado
     val isSelected = cityUiState.currentPlace.id == place.id && contentType == PlacesContentType.ListAndDetail
 
+    // Diseño del item de la lista
     Card(
         elevation = CardDefaults.cardElevation(),
         modifier = modifier,
@@ -244,10 +292,13 @@ private fun PlaceItem(
                     }
                 )
         ) {
+            // Imagen del lugar
             PlaceItemImage(
                 place = place,
                 modifier = Modifier.size(dimensionResource(R.dimen.card_image_height))
             )
+
+            // Información del lugar
             Column(
                 modifier = Modifier
                     .padding(
@@ -257,6 +308,8 @@ private fun PlaceItem(
                     .weight(1f)
             ) {
                 Spacer(Modifier.height(5.dp))
+
+                // Nombre del lugar
                 Text(
                     text = stringResource(place.nameResourceId),
                     style = MaterialTheme.typography.titleMedium,
@@ -264,6 +317,8 @@ private fun PlaceItem(
                     modifier = Modifier.padding(bottom = dimensionResource(R.dimen.card_text_vertical_space))
                 )
                 Spacer(Modifier.height(15.dp))
+
+                // Dirección del lugar
                 Text(
                     text = stringResource(place.dirResourceId),
                     style = MaterialTheme.typography.titleMedium,
@@ -275,6 +330,12 @@ private fun PlaceItem(
     }
 }
 
+/**
+ * Función que representa la imagen de un lugar en un elemento de la lista de lugares.
+ *
+ * @param place lugar del cual se obtiene la imagen
+ * @param modifier modificador opcional para aplicar al diseño de la imagen
+ */
 @Composable
 private fun PlaceItemImage(
     place: Place,
@@ -293,6 +354,14 @@ private fun PlaceItemImage(
     }
 }
 
+/**
+ * Función que representa la pantalla de detalles de un lugar concreto.
+ *
+ * @param selectedPlace lugar seleccionado para mostrar detalles
+ * @param onSendButtonClicked lambda que se invoca cuando se hace click en el botón de enviar
+ * @param modifier modificador opcional para aplicar al diseño
+ * @param contentPadding espaciado alrededor del contenido de la pantalla de detalles
+ */
 @Composable
 private fun PlaceDetail(
     selectedPlace: Place,
@@ -343,7 +412,6 @@ private fun PlaceDetail(
                     .padding(horizontal = dimensionResource(R.dimen.padding_small))
                     .fillMaxWidth()
             )
-
             Spacer(Modifier.height(10.dp))
 
             // Dirección del lugar
@@ -359,7 +427,6 @@ private fun PlaceDetail(
                     text = stringResource(selectedPlace.dirResourceId)
                 )
             }
-
             Spacer(Modifier.height(20.dp))
 
             // Descripción del lugar
@@ -375,7 +442,6 @@ private fun PlaceDetail(
                     text = stringResource(selectedPlace.descResourceId)
                 )
             }
-
             Spacer(Modifier.height(5.dp))
 
             // Botón para enviar a otra aplicación
@@ -398,6 +464,12 @@ private fun PlaceDetail(
     }
 }
 
+/**
+ * Función que representa un componente compuesto por un icono y un texto.
+ *
+ * @param icon icono a representar
+ * @param text texto a representar
+ */
 @Composable
 private fun IconWithText(
     icon: Painter,
@@ -423,7 +495,6 @@ private fun IconWithText(
             modifier = Modifier.size(24.dp)
         )
     }
-
     Spacer(modifier = Modifier.width(20.dp))
 
     // Estructura del texto
@@ -452,6 +523,18 @@ private fun IconWithText(
     }
 }
 
+/**
+ * Función que representa la pantalla de lista de lugares y detalles de un lugar.
+ *
+ * @param cityUiState estado actual de la interfaz de usuario
+ * @param places lista de lugares a mostrar
+ * @param selectedPlace lugar seleccionado para mostrar detalles
+ * @param onClick lambda que se invoca cuando se hace click en un lugar de la lista
+ * @param onSendButtonClicked lambda que se invoca cuando se hace click en el botón de enviar
+ * @param modifier modificador opcional para aplicar al diseño
+ * @param contentPadding espaciado alrededor del contenido de la pantalla
+ * @param contentType indica tipo de contenido de la pantalla (ListOnly o ListAndDetail)
+ */
 @Composable
 private fun PlacesListAndDetail(
     cityUiState: CityUiState,
@@ -466,6 +549,7 @@ private fun PlacesListAndDetail(
     Row(
         modifier = modifier
     ) {
+        // Representa la lista de lugares
         PlacesList(
             cityUiState = cityUiState,
             places = places,
@@ -476,6 +560,8 @@ private fun PlacesListAndDetail(
                 .weight(2f)
                 .padding(horizontal = dimensionResource(R.dimen.padding_medium))
         )
+
+        // Representa los detalles de un lugar específico
         PlaceDetail(
             onSendButtonClicked = onSendButtonClicked,
             selectedPlace = selectedPlace,
@@ -485,6 +571,9 @@ private fun PlacesListAndDetail(
     }
 }
 
+/**
+ * Función que previsualiza un elemento de la lista de lugares.
+ */
 @Preview
 @Composable
 fun PlaceItemPreview() {
@@ -497,6 +586,9 @@ fun PlaceItemPreview() {
     )
 }
 
+/**
+ * Función que previsualiza la lista de lugares.
+ */
 @Preview
 @Composable
 fun PlacesListPreview() {
@@ -509,6 +601,9 @@ fun PlacesListPreview() {
     )
 }
 
+/**
+ * Función que previsualiza la lista de lugares y detalles del lugar en una TABLET.
+ */
 @Preview(device = Devices.TABLET)
 @Composable
 fun PlacesListAndDetailsPreview() {
@@ -523,6 +618,9 @@ fun PlacesListAndDetailsPreview() {
     )
 }
 
+/**
+ * Función que previsualiza la pantalla en dispositivo móvil.
+ */
 @Preview
 @Composable
 fun PlacesListScreenPreviewMobile() {
@@ -532,6 +630,9 @@ fun PlacesListScreenPreviewMobile() {
     )
 }
 
+/**
+ * Función que previsualiza la pantalla en dispositivo tablet.
+ */
 @Preview(device = Devices.TABLET)
 @Composable
 fun PlacesListScreenPreviewTablet() {

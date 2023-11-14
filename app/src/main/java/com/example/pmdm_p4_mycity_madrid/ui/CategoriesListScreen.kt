@@ -55,7 +55,13 @@ import com.example.pmdm_p4_mycity_madrid.data.CategoriesDataSource
 import com.example.pmdm_p4_mycity_madrid.model.Category
 import com.example.pmdm_p4_mycity_madrid.model.Subcategory
 
-// TODO COMENTAR LAS FUNCIONES Y COMPROBAR
+/**
+ * Función que representa la pantalla que muestra la lista de categorías de la aplicación.
+ *
+ * @param categories lista de categorías que se mostrarán en la pantalla
+ * @param onSubcategorySelected lambda que se invoca cuando se selecciona una subcategoría
+ * @param modifier modificador opcional para aplicar al diseño de la pantalla
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoriesListScreen(
@@ -63,8 +69,10 @@ fun CategoriesListScreen(
     onSubcategorySelected: (Subcategory) -> Unit,
     modifier: Modifier = Modifier
 ){
+    // Diseño de la estructura básica de la pantalla
     Scaffold(
         topBar = {
+            // Barra superior personalizada
             TopAppBar(
                 title = {
                     Text(text = stringResource(R.string.city_break))
@@ -75,6 +83,7 @@ fun CategoriesListScreen(
             )
         }
     ) { innerPadding ->
+        // Diseño de la lista de categorías
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_medium)),
             modifier = modifier
@@ -97,6 +106,9 @@ fun CategoriesListScreen(
     }
 }
 
+/**
+ * Función que representa la cabecera de la ciudad en la pantalla de lista de categorías.
+ */
 @Composable
 private fun CityHeader() {
     Column(
@@ -106,19 +118,27 @@ private fun CityHeader() {
         verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small))
     ) {
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+
+        // Texto que representa el nombre de la ciudad
         Text(
             text = stringResource(R.string.madrid),
             color = colorResource(id = R.color.my_dark_gray),
             fontSize = 40.sp,
             style = MaterialTheme.typography.headlineSmall
         )
+
+        // Línea decorativa para separar el nombre de la ciudad del subtítulo
         Line()
+
+        // Texto que representa un subtítulo
         Text(
             text = stringResource(R.string.skyline),
             color = colorResource(id = R.color.my_dark_gray),
             fontSize = 20.sp,
             style = MaterialTheme.typography.headlineSmall
         )
+
+        // Imagen que muestra la silueta de la ciudad
         Image(
             painter = painterResource(R.drawable.silueta),
             contentDescription = stringResource(R.string.silueta),
@@ -144,15 +164,20 @@ private fun Line() {
 }
 
 /**
- * Define la estructura que tendrá cada categoría en la lista.
+ * Función que representa una categoría de la lista.
+ *
+ * @param category objeto que representa una categoría
+ * @param onSubcategorySelected lambda que se invoca cuando se selecciona una subcategoría
  */
 @Composable
 private fun CategoryItem(
     category: Category,
     onSubcategorySelected: (Subcategory) -> Unit
 ) {
+    // Variable que controla el estado de expansión/cierre de la categoría
     var expanded by remember { mutableStateOf(false) }
 
+    // Tarjeta que contiene la información de la categoría y las subcategorías
     Card(
         modifier = Modifier
             .padding(dimensionResource(R.dimen.padding_small))
@@ -167,16 +192,20 @@ private fun CategoryItem(
                 )
                 .background(colorResource(id = R.color.my_normal_purple))
         ) {
+            // Información principal de la categoría y el botón de expansión/contracción
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(dimensionResource(R.dimen.padding_small))
             ) {
+                // Muestra información básica de la categoría
                 CategoryInfo(
                     category.imageResourceId,
                     category.nameResourceId
                 )
                 Spacer(Modifier.weight(1f))
+
+                // Muestra botón de expansión/contracción
                 CategoryItemButton(
                     expanded = expanded,
                     onClick = {
@@ -184,6 +213,7 @@ private fun CategoryItem(
                     },
                 )
             }
+            // Si la categoría está expandida, se muestra la lista de subcategorías
             if (expanded) {
                 SubcategoriesList(
                     category.subcategories,
@@ -195,7 +225,11 @@ private fun CategoryItem(
 }
 
 /**
- * Define la estructura que tendrá la información de la categoría.
+ * Función que representa la información visual de una categoría, incluyendo su icono y nombre.
+ *
+ * @param categoryIcon recurso de imagen del icono de la categoría
+ * @param categoryName recurso de del nombre de la categoría
+ * @param modifier modificador opcional para aplicar al diseño
  */
 @Composable
 private fun CategoryInfo(
@@ -203,6 +237,7 @@ private fun CategoryInfo(
     @StringRes categoryName: Int,
     modifier: Modifier = Modifier
 ) {
+    // Muestra el icono de la categoría
     Image(
         modifier = modifier
             .size(dimensionResource(R.dimen.image_category_size))
@@ -212,6 +247,8 @@ private fun CategoryInfo(
         painter = painterResource(categoryIcon),
         contentDescription = stringResource(R.string.category_icon)
     )
+
+    // Muestra el nombre de la categoría
     Text(
         text = stringResource(categoryName),
         style = MaterialTheme.typography.titleSmall,
@@ -223,7 +260,10 @@ private fun CategoryInfo(
 }
 
 /**
- * Define el icono de expandir de la categoría.
+ * Función que representa el botón de expansión/contracción.
+ *
+ * @param expanded indica si la categoría está actualmente expandida o no
+ * @param onClick lambda que se invoca cuando se hace click en el botón
  */
 @Composable
 private fun CategoryItemButton(
@@ -235,6 +275,7 @@ private fun CategoryItemButton(
         modifier = Modifier
             .padding(top = dimensionResource(id = R.dimen.padding_medium))
     ) {
+        // Muestra icono de flecha
         Icon(
             imageVector = if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
             contentDescription = stringResource(R.string.expand_button_content_description),
@@ -244,8 +285,10 @@ private fun CategoryItemButton(
 }
 
 /**
- * Define la estructura que tendrán las subcategorías de cada categoría principal.
- * Se llama a esta función al expandir una categoría.
+ * Función que representa una lista de subcategorías.
+ *
+ * @param subcategories lista de subcategorías a mostrar
+ * @param onSubcategorySelected lambda que se invoca cuando se selecciona una subcategoría
  */
 @Composable
 private fun SubcategoriesList(
@@ -258,6 +301,7 @@ private fun SubcategoriesList(
             .padding(top = dimensionResource(R.dimen.padding_small))
             .padding(bottom = dimensionResource(R.dimen.padding_small))
     ) {
+        // Representación de cada subcategoría
         subcategories.forEach { subcategory ->
             Row (
                 modifier = Modifier
@@ -267,6 +311,7 @@ private fun SubcategoriesList(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                // Muestra el icono de la subcategoría
                 Image(
                     modifier = Modifier
                         .size(dimensionResource(R.dimen.image_subcategory_size))
@@ -276,6 +321,8 @@ private fun SubcategoriesList(
                     painter = painterResource(subcategory.imageResourceId),
                     contentDescription = stringResource(R.string.category_icon)
                 )
+
+                // Muestra el nombre de la subcategoría
                 Text(
                     text = stringResource(subcategory.nameResourceId),
                     color = colorResource(id = R.color.my_dark_gray),
@@ -293,7 +340,7 @@ private fun SubcategoriesList(
 }
 
 /**
- * Función para previsualizar la pantalla.
+ * Función para previsualizar la pantalla de lista de categorías.
  */
 @Preview
 @Composable
@@ -307,6 +354,9 @@ fun CategoriesListScreenPreview(){
     )
 }
 
+/**
+ * Función para previsualizar subcategorías de 'Hostelería'.
+ */
 @Preview
 @Composable
 fun SubcategoriesListScreenPreview1(){
@@ -316,6 +366,9 @@ fun SubcategoriesListScreenPreview1(){
     )
 }
 
+/**
+ * Función para previsualizar subcategorías de 'Ocio'.
+ */
 @Preview
 @Composable
 fun SubcategoriesListScreenPreview2(){
@@ -325,6 +378,9 @@ fun SubcategoriesListScreenPreview2(){
     )
 }
 
+/**
+ * Función para previsualizar subcategorías de 'Cultura'.
+ */
 @Preview
 @Composable
 fun SubcategoriesListScreenPreview3(){
@@ -334,6 +390,9 @@ fun SubcategoriesListScreenPreview3(){
     )
 }
 
+/**
+ * Función para previsualizar subcategorías de 'Alojamientos'.
+ */
 @Preview
 @Composable
 fun SubcategoriesListScreenPreview4(){
